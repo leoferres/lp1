@@ -1,8 +1,12 @@
 * Programming Language 1 @ UdeC
 
-Cloning this repo will give you access to all the material of LP1. The
-directory structure is as follows:
+Cloning this repo will give you access to all the material of LP1. For
+more information, you may visit the main page of the course at:
+http://leoferres.github.io/503208_2015_2.html.
 
+The directory structure is as follows:
+
+#+BEGIN_EXAMPLE
 lp1
 ├── examples
 │   └── w1_eg1.org
@@ -17,6 +21,7 @@ lp1
 ├── solutions
 │   └── w1_ex1_sol.org
 └── w1_l1_notes.org
+#+END_EXAMPLE
 
 This is the README.org file. (Captain obvious strikes again.)
 
