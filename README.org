@@ -43,3 +43,6 @@ basic. Content above form :)
 Finally, and importantly, all lecture notes are in the =lecnotes=
 folder. The naming convention is the same as before: the week number,
 the lecture number =_lX=, and the suffix =_notes.org=.
+
+I definitely accept pull requests. My students are actually encouraged
+to make these materials better.
