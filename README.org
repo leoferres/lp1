@@ -1,2 +1,40 @@
 * Programming Language 1 @ UdeC
 
+Cloning this repo will give you access to all the material of LP1. The
+directory structure is as follows:
+
+lp1
+├── examples
+│   └── w1_eg1.org
+├── exercises
+│   └── w1_ex1.org
+├── general
+│   └── UdeClass_master.otp
+├── README.org
+├── slides
+│   ├── w1_l1_slides.odp
+│   └── w1_l1_slides.pdf
+├── solutions
+│   └── w1_ex1_sol.org
+└── w1_l1_notes.org
+
+This is the README.org file. (Captain obvious strikes again.)
+
+They are all pretty self-explanatory. The =examples=, =exercises=, and
+=solutions= folders all contain =org= (markup) files. They have all
+been named with the following convention: =wX_= is the week (w1 is
+week 1), the next is the "kind" of content: =egX= is example X (.e.g,
+=eg1= is example 1), =exX= is exercise X (i.e., =ex1= is exercise 1),
+and so on. The "solutions" folder have file names with three "fields":
+they refer to the week and the exercise they are a solution /to/, and
+the =_sol.org= suffix is appended. The =slides= folder contains the
+slides I used in class, plus the slides source code in OpenOffice.
+
+The =general= folder contains files to make the course
+self-contained. So far (<2015-08-10 Mon>) it only contains the
+template for the slides for the course... which are pretty
+basic. Content above form :)
+
+Finally, and importantly, all lecture notes are in the =lecnotes=
+folder. The naming convention is the same as before: the week number,
+the lecture number =_lX=, and the suffix =_notes.org=.
