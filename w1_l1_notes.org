@@ -1,0 +1,87 @@
+#+TITLE: Week 1 - Lecture 1
+
+* Lecture notes <2015-08-10 Mon>
+
+** Relevant info
+
+Slides for this are at [[slides/w1_l1_slides.pdf]], sources are also in
+the slides directory.
+
+** Important websites
+
+- https://piazza.com/udec.cl/fall2015/503208/home (REGISTER!)
+- http://leoferres.github.io/503208_2015_2.html
+- https://github.com/leoferres/lp1
+- https://github.com/leoferres/
+
+** Lecture 1
+
+    - *Introduction*: This is the first "real" Computer Science course
+      in the CS degree at UdeC. My name is Leo Ferres, but you can
+      call me Leo. Started programming at 9 yo in Argentina on a CZ
+      1500 (clone of the Timex Sinclair 1500, the "American" version
+      of the ZX81, plus expansion to 16Kb). My mom then bought me a
+      48Kb TK90X, a Brazilian clone of the British ZX Sepctrum, but
+      that's another story. Moved to Canada to do my PhD, and arrived
+      in Chile in 2008. I do research on HPC, parallel algorithms, and
+      social network analysis.
+
+      The objective of this course is to give you the most basic
+      conceptual tools you need to understand programming. However,
+      this is not your run-o'-the-mill, vanilla, Java-ish programming
+      course. It will not teach you (many) good practices of software
+      engineering, nor will it teach you how to be a good programmer
+      (who could in a Semester, anyway). What it will do is teach you
+      to understand how a computer does what you tell it to do through
+      a computer programming language. Programming is not black magic,
+      and computers are not black boxes, my job in this course is to
+      make both transparent.
+
+      We will use C, but the syntax is irrelevant. I could have picked
+      any programming language. However, C gives me the control I need
+      and it is lean enough to teach you the concepts I want to teach
+      you. In fact, if I am successful teaching you those concepts, at
+      the end of this courseyou will be able to easily learn any
+      computer syntax with minimum effort (well, maybe not
+      Prolog... but still).
+
+      We will try to teach you, through exercises, some problem
+      solving skills. Collaboration is allowed on assignments, but the
+      final report is up to you. (See below). I will try to tell you
+      some compsci/programming history along the way. We have a great
+      discipline, with some great stories to tell.
+
+      Aaaaand, we have lots of awesome geeky tools to learn that will
+      make you a H4x0r (leet speak).
+
+    - *Administration*:
+
+      - Evaluation
+
+	- Exams: really hard, study hard!
+	  - even if 60/40, avg is not weighted
+	  - you do not pass the exams, you do not pass the class, no
+            matter what other marks you have.
+
+	- Assignments:
+	  - you do not pass the assignments, you do not pass the
+            class, no matter what other marks you have.
+	  - lab exam: I think this year they will all be lab exams. I
+            still need to figure out the logistics, but it will have
+            to do with google forms (check them out if you want).
+	  - you can collaborate, document is an individual project
+            (must show me you understood).
+	  - details on how to submit are TBA (will prob change this
+            year)
+
+	- class participation: measured on your contributions in
+          Piazza. at the end, the 10 most active contributors get 2%.
+
+	- bonus 1% if you transcribe a lecture, but only if you've
+          passed the course (so, only to improve your final mark).
+
+** Next class
+
+We will be working with some new tools! Check out Linux (Xubuntu), the
+xfce terminal, emacs, github, irssi (irc). URLs in slides.
+
