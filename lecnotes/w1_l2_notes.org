@@ -1,0 +1,18 @@
+#+TITLE: Week 1 - Lecture 1
+
+* Lecture notes <2015-08-13 Mon>
+
+** Relevant info
+
+  1. The handout should be up. It should be in Piazza, and the
+     =github= repository. Please read it carefully and send questions
+     if there's anything that you don't find clear enough.
+  2. This lecture notes should be in github as well at
+     https://github.com/leoferres/lp1/blob/master/lecnotes/w1_l2_notes.org
+  3.
+
+** Lecture
+
+
+
+** Next class

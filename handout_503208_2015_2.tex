@@ -1,0 +1,578 @@
+\documentclass[11pt]{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,right=1in,left=1in,headheight=65pt]{geometry}
+
+\pagestyle{fancy}
+\lhead{Handout 1: Informaci\'on del curso}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+
+
+\thispagestyle{empty}
+
+\noindent  {\em Programaci\'on I } \hfill 5 de agosto de 2015\\
+\noindent  Universidad de Concepci\'on, Chile  \hfill 503.208-II\\
+\noindent Prof. Leo Ferres \hfill Handout 1\footnote{This set of rules
+  has been modified to fit this particular course from the original,
+  created by E. Demain for his 6.046 course at MIT.}
+\rule{\textwidth}{0.4pt}
+
+\vspace{0.4in}
+\noindent{\bf DISCLAIMER:} This handout is written in Spanish (except for this
+first paragraph, obviously). The university does not allow important
+``contractual'' (policy) information between the professor and the
+student concerning evaluation, dates, etc. to be published in any
+language but Spanish... which makes sense. In any case, I apologize
+for this inconvenience. Who else cares about this stuff anyway?!
+$\blacksquare$
+
+\section*{Informaci\'on Importante}
+
+Este handout contiene informaci\'on importante sobre el curso, una
+especie de manual. La mayor parte de las secciones de este documento
+ser\'an \'utiles a lo largo de todo el curso, as\'i es que por favor
+mantenganlo cerca. Los puntos m\'as importantes a prestar atenci\'on
+{\em ahora mismo} son:
+
+\begin{enumerate}
+\item En esta primera clase definiremos los horarios de
+  laboratorio. Aseg\'urense de anotarse en uno u otro horario.
+\item Anoten en sus calendarios las fechas de los certamenes y
+  assignements, y aseg\'urense de tener esos horarios libres.
+\item Por favor, lean cuidadosamente la pol\'itica de colaboraci\'on con
+  respecto a las tareas.
+\item Por favor lean cuidadosamente la pol\'itica de correcci\'on de
+  assignments. En particular, f\'ijense que si no aprueban los
+  assignments o los certamenes con una nota promedio $\geq$ 4, {\bf NO
+    APRUEBAN EL CURSO}.
+\item Por favor, reg\'istrense en Piazza tan pronto como sea posible:
+  \begin{center}
+      \url{piazza.com/udec.cl/fall2015/503208}
+  \end{center}
+\item Este a\~no tamb\'en tendremos un IRC chatroom privado para hacer
+  preguntas durante las horas de clase. Las instrucciones de c\'omo
+  acceder a \'el se dar\'an oportunamente.
+\item El \verb+github+ de este curso es.
+  \begin{center}
+      \url{https://github.com/leoferres/lp1}
+  \end{center}
+
+\end{enumerate}
+
+\section{Staff}
+\label{sec:staff}
+
+El profesor de este curso es Leo Ferres. Por favor revisen el sistema
+Infoda y Piazza para los nombres e informaci\'on de contacto de profesor
+y alumnos ayudantes.
+\newpage
+El website del curso es:
+
+ \begin{center}
+\url{http://www.leoferres.info/503208_2015_2.html}
+\end{center}
+
+Si necesitan alguna clase de ayuda, lo mejor es postear la pregunta en
+Piazza. As\'i, cualquiera de nosotros (el profesor, los ayudantes o
+inclusive otros compa\~neros) pueden responder, haciendo que la
+respuesta llegue antes. A menos que necesiten una respuesta por un
+asunto privado, usen Piazza. Para todo email que llegue al staff en
+privado y que concierna a todo el grupo, se le pedir\'a al autor del
+email que lo publique en Piazza. El website principal del curso en
+Piazza es:
+
+ \begin{center}
+\url{piazza.com/udec.cl/fall2015/503208/home}
+\end{center}
+
+Los ayudantes son An\'ibal, Diego, y Meraioth. Ellos tienen varias
+obligaciones durante el curso:
+
+\begin{enumerate}
+\item son responsables de los laboratorios. Al final del curso, ellos
+  me pasan una nota de participaci\'on de cada uno de ustedes en dichos
+  laboratorios
+\item son los que corrigen los assignments y el certamen de laboratorio
+\item son los que cuidan los cert\'amenes
+\item tienen un horario de consultas
+\end{enumerate}
+
+Los ayudantes de este curso son personas muy inteligentes, saben
+mucho. Saquen provecho a esto. Adem\'as, tienen voz y voto en cuanto a
+la nota final del curso.
+
+\section{Temas}
+\label{sec:topics}
+
+En esta clase abordaremos diferentes temas de programaci\'on
+procedural. Algunos de estos temas en general son, entre otros:
+
+\begin{itemize}
+\item Arquitectura y representaci\'on de datos
+\item Variables
+\item Operadores y expresiones
+\item Conversi\'on de tipos de datos y orden de evaluaci\'on
+\item Condicionales, interac\'on
+\item Funciones y estructura de programa
+\item Vectores
+\item Strings
+\item Punteros
+\item Structs
+\item Memoria din\'amica
+\item Entrada/Salida
+\end{itemize}
+
+\section{Prerrequisitos}
+\label{sec:preqs}
+
+No hay pre-requisitos para 503208.
+
+A veces, estudiantes de otras carreras vienen a tomar este curso. Esos
+estudiantes tienen que venir a hablar con el staff para ser
+considerados. En general, estamos abiertos y alentamos otros
+estudiantes a unirse a nosotros! Sin embargo, este curso es especial
+para ciencias de la computaci\'on, y por ende tiene ciertas
+dificultades que otros cursos no tienen. Aquellos que quieran tomarlo
+y vienen de otras carreras, por favor usen el sentido com\'un a ver si
+este curso es el ideal.
+
+\section{Clases y laboratorios}
+\label{sec:clases}
+
+Las clases ser\'an en el Laboratorio de Ingenier\'ia de Software, en
+el 3er piso de sistemas los d\'ias lunes de 12pm a 1pm y los d\'ias
+jueves de 8.15am a 10am. Ustedes son responsables de todo el material
+impartido en las clases, incluyendo comentarios orales del profesor.
+
+Los estudiantes deben participar de tambi\'en de 2 horas de
+laboratorio por semana, y tambi\'en ser\'an responsables por el
+material presentado en ellos. Si van a los laboratorios, hay una gran
+posibilidad de que aprueben los certamenes. Muchos de los ejercicios
+que damos en los labs tienden a aparecer en los certamenes. Adem\'as,
+los labs les da la oportunidad de hacer preguntas e interactuar con el
+staff del curso de una manera m\'as personalizada que durante la clase
+o por email. Los instructores del laboratorio les asignar\'an una nota
+que cuenta hacia la nota final. La mayor\'ia de los labs ser\'an
+impartidos por los ayudantes.
+
+Los labs ser\'an los d\'ias martes de 3pm a 5pm, en el Laboratorio de
+Ingenier\'ia de Software, 3er piso de Sistemas.
+
+Las clases ser\'an en castellano, pero todo el material estar\'a en
+ingl\'es, incluyendo mi interacci\'on con la pizarra, las notas,
+etc. Es importante que se acostumbren al ingl\'es, ya que el 90\% de
+la industria/academia se mueve con este idioma como lengua franca. Sin
+embargo, ustedes no tienen que ``producir'' en ingl\'es, s\'olo
+entender el ingl\'es escrito. En el campus hay muchas opciones para
+aprender el idioma, incluyendo cursos del CFRD, otros alumnos el
+centro TeachIng, etc.
+
+\section{Tareas o ``Assignments''}
+\label{sec:assg}
+
+Se asignar\'an 3 problemas durante el semestre. Los problemas se sacan
+del juez online de la Universidad de Valladolid. El website del juez
+de la UVA es
+
+\begin{center}
+  \url{http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8}
+\end{center}
+
+Se sugiere a los estudiantes que visiten el sitio de la UVA, y que, si
+el tiempo les permite, empiecen a hacer algunos de los problemas que
+aparecen ahi. Esto les va a permitir practicar antes de submitir el
+ejercicio de LP1.
+
+El clandario del curso muestra las fechas tentativas de la
+publicaci\'on de las tareas y sus fechas l\'imite de entrega. La fecha
+de entrega igual estar\'a confirmada en el email que les llegar\'a con
+la publicaci\'on del problema en INFOALUMNOS. La tarea debe entregarse
+a las 11:59pm del d\'ia l\'imite (usualmente 7 d\'ias despu\'es de la
+publicaci\'on de la misma).
+
+El estudiante deber\'a submitir 3 archivos:
+
+\begin{itemize}
+\item Un archivo con extensi\'on \verb+.c+ que contenga el c\'odigo
+  final del programa. El nombre de este archivo se dar\'a con la
+  publicaci\'on de la tarea. Si, por ejemplo, la tarea se llama
+  \verb+morse+, el archivo se llamar\'a \verb+morse.c+. Si trabajaron
+  en equipo, deben colocar el o los nombres de los integrantes del
+  equipo en el documento \LaTeX. Si trabajaron solos, s\'olo escriban
+  ``Miembros del equipo: Ninguno''.
+\item Un archivo \LaTeX\ que contenga ls documentaci\'on del c\'odigo,
+  y una explicaci\'on de como llegaron a su soluci\'on. Si bien pueden
+  juntarse a hacer el c\'odigo en equipo, el documento de
+  explicaci\'on es individual. Ver m\'as abajo en la Secci\'on
+  \ref{sec:guide}.
+\item Un archivo \verb+Makefile+ para generar el c\'odigo y la
+  documentaci\'on en \verb+pdf+. En la web del curso pueden encontrar
+  un ejemplo de archivo \verb+Makefile+ con comentarios en su
+  interior.
+\end{itemize}
+
+Todas las tareas se entregan a trav\'es de INFOALUMNOS. Los archivos
+de m\'as arriba se entregan compactados en un solo archivo
+\verb+.tar.gz+. Este archivo tiene que tener como nombre su n\'umero
+de estudiante y el sufijo A$x$, donde $x$ es el n\'umero de la tarea
+(1, 2, \'o 3). Por ejemplo, \verb+202012344A1.tar.gz+ se refiere al
+estudiante con matr\'icula 202012344, quien acaba de submitir la tarea
+1.
+
+Luego de correr el programa \verb+Makefile+, se generar\'an dos
+archivos, uno \verb+pdf+ y uno \verb+.exe+, que es el programa en C
+compilado en un ejecutable (vea el \verb+Makefile+ para m\'as
+instrucciones).
+
+\noindent {\bf IMPORTANTE:} Para aprobar el curso, la nota de las
+tareas deben tener promedio mayor o igual a 4. O sea, formalmente,
+$(A_1+A_2+A_3)/3 \geq 4$. Si todo el resto del curso fue aprobado,
+pero las tareas no, entonces quedan con la nota m\'as alta, pero menor
+a 4 que tengan considerando todas las otras notas del curso. No hay
+reclamos por esto. {\bf Si no tienen promedio mayor o igual a 4 en las
+  tareas, no pasan el curso}.
+
+La pauta de correcci\'on de las tareas es la siguiente: se toma el
+programa, y se prueba con tres ejemplos. Uno de estos archivos de
+prueba es el ejemplo del problema en la web. Todo el mundo deber\'ia
+tener este ejemplo bien! (Si no, significa o que el autor no hizo
+realmente el problema y lo copi\'o de un amigo, o que no lo compil\'o
+ni una vez, etc.). Los otros dos archivos de prueba son nuevos.
+
+La siguiente itemizaci\'on especifica la pauta de correcci\'on con los
+valores asociados a cada \'item. Cada uno de estos valores {\em se
+  descuenta} del 7 ideal.
+
+\begin{itemize}
+\item $[$ g $]$ General
+  \begin{itemize}
+  \item $[$ g1 $]$ El trabajo no se entreg\'o: -6pts.
+  \item $[$ g2 $]$ El trabajo se entreg\'o despu\'es del deadline: -1pt, y
+    -1pt por cada d\'ia adicional.
+  \item $[$ g3 $]$ Nombre/tipo de archivo incorrecto: -0.5pt
+  \end{itemize}
+\item $[$ s $]$ Sistema
+  \begin{itemize}
+  \item $[$ s1 $]$ No compila: -4pts.
+  \item $[$ s2 $]$ Casos de prueba:
+    \begin{itemize}
+    \item $[$ s2.1 $]$ El caso 1 no funciona (el ejemplo): -1pt
+    \item $[$ s2.2 $]$ El caso 2 no funciona (el ejemplo): -1.5pt
+    \item $[$ s2.3 $]$ El caso 3 no funciona (el ejemplo): -1.5pt
+    \end{itemize}
+  \item $[$ s4 $]$ Reportes de warning por el \verb+-Wall+: -0.25pts
+    por warning.
+  \end{itemize}
+\item $[$ d $]$ Documentaci\'on
+  \begin{itemize}
+  \item $[$ d1 $]$ Error de \LaTeX: -2pts
+  \item $[$ d2 $]$ La explicaci\'on en si: esta es la \'unica parte
+    subjetiva de la evaluaci\'on. Se descontar\'an puntos por no claridad
+    de comentarios, por c\'odigo rebuscado, por cualquier cosa que nos
+    sugiera a m\'i o a los ayudantes que hay algo que no entendieron, o
+    que no pueden explicar lo que est\'a pasando en el c\'odigo. Sin
+    embargo, si alguien ha hecho un muy buen trabajo, daremos puntos
+    extras, a\'un si se pasa del 7. A veces, estos puntos definen si
+    pasan o no la evaluaci\'on de las tareas, as\'i que hagan un buen
+    trabajo, vale la pena!
+  \end{itemize}
+\end{itemize}
+
+Algunas cosas que notar adem\'as:
+
+\begin{itemize}
+\item No existe una ``recuperaci\'on'' de las tareas. Las tareas son 3 y
+  s\'olo 3.
+\item Despu\'es de submitir la tarea por INFODA, no se puede cambiar
+  absolutamente nada despu\'es del d\'ia y hora l\'imites. Aunque se
+  equivoquen en una coma, si cuando los ayudantes o yo compilamos el
+  programa, este no genera un ejecutable, o no se comporta como se
+  espera (``but it works on my computer!''), ya es tarde para
+  arreglarlo. Sin embargo, antes del cierre pueden submitir varias
+  versiones si se dan cuenta de que se equivocaron.
+\end{itemize}
+
+\section{Gu\'ia de redacci\'on del informe de las tareas}
+\label{sec:guide}
+
+Deben ser lo m\'as claro posible en la documentaci\'on y explicaci\'on del
+c\'odigo que van a entregar. De hecho, ser capaz de comunicar asuntos
+t\'ecnicos de manera efectiva es una habilidad muy importante que todo
+ingeniero debe tener en el set de herramientas.
+
+Un programa simple vale m\'as puntos que uno dif\'icil de seguir y poco
+trabajado, adem\'as de que seguramente tiene menos errores. Trabajos que
+est\'an desordenados recibir\'an menos puntos, aunque el programa est\'e
+correcto.
+
+El informe se har\'a en \LaTeX. En la p\'agina web del curso se encuentra
+un modelo que se puede seguir. (De hecho, es muy parecido al de los
+escribas.)
+
+Recuerden que el objetivo principal de este ejercicio es la
+comunicaci\'on. Se ha informado a los ayudantes que deben descontar
+puntos por documentos/programas que sean dif\'iciles de seguir y
+exageradamente complejos.
+
+\section{Los certamenes}
+\label{sec:certamenes}
+
+Este curso tiene 3 certamenes: dos certamenes te\'oricos y uno pr\'actico
+en el laboratorio. Los certamenes te\'oricos suman el 50\% de la nota
+final del curso. Sin embargo, tienen pesos diferentes. El segundo
+certamen es necesariamente (por acumulaci\'on y complejidad de
+contenidos) m\'as dif\'icil que el primero. Entonces, de esos 50\%
+totales, el certamen 1 suma 40\% (y dura 1.5 horas) y el certamen 2 el
+60\% (dura 3 horas). El certamen de laboratorio (certamen pr\'actico)
+suma 15\% directo a la nota final del curso, dura 1.5 horas y se hace
+enfrente de un computador en alg\'un laboratorio.
+
+Las fechas, horarios y lugares de los certamenes son tentativamente
+los siguientes:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}[h]{ll}
+    Certamen 1 & 15 de octubre\\
+    Certamen 2 & 26 de noviembre\\
+    Certamen Lab & 5 de noviembre\\
+    Recuperativo & 30 de noviembre\\
+  \end{tabular}
+\end{table}
+
+Algunas cosas que notar adem\'as:
+
+\begin{itemize}
+\item Mis certamenes son realmente dif\'iciles. Por favor, estudien
+  acordemente.
+\item Para pasar el curso, los estudiantes tienen que tener un
+  promedio $\geq 4$ entre los dos certamenes {\em te\'oricos}.
+\item Hay un solo certamen recuperativo. Este certamen tendr\'a lugar
+  durante la semana de recuperativos asignada por la UdeC: en este
+  2015, las evaluaciones de recuperaci\'on ser\'an entre el 6 y el 15 de
+  julio.
+\end{itemize}
+
+En la p\'agina web se encuentran certamenes de los a\~nos anteriores.
+
+\section{Los escribas}
+\label{sec:scribes}
+
+Todos los estudiantes deben transcribir una clase a partir de las
+notas de clase al papel (en espa\~nol). Las notas deber\'an estar listas
+en el d\'ia de la clase siguiente. Vamos a pasar una lista para
+inscribirse durante la primera o segunda semana de clases.
+
+Las notas deben estar escritas en \LaTeX, usando el template en la
+web: \url{http://www.inf.udec.cl/~leo/lec-template.tex}.
+
+Las notas de los escribas se env\'ian v\'ia email a la direcci\'on del
+staff del curso como un archivo \verb+pdf+, el original en \LaTeX, y
+todas las figuras que se incluyeron en un archivo \verb+tar.gz+. El
+archivo \verb+.tex+ debe llamarse
+\verb+scribe_2015_2_503208_lectureXX.tex+, as\'i como el
+\verb+tar.gz+. Las fecha l\'imite para entregar las notas de una clase
+es al tercer d\'ia de esa semana. Es decir, si la clase fue un lunes,
+las notas se esperan el jueves de esa semana.
+
+Seguramente el staff mandar\'a comentarios, y posiblemente pidamos
+revisiones.
+
+\section{Pauta de nota final}
+\label{sec:notas}
+
+Las notas se publicar\'an en INFOALUMNOS a medida que las vayamos
+teniendo. ({\bf Consideren que corregir tareas y certamenes no es
+  trivial, y demora un cierto tiempo. As\'i y todo, el staff har\'a lo
+  posible para tener las notas lo antes posible}).
+
+La nota final se obtendr\'a de las notas parciales de los cert\'amenes
+te\'oricos y el pr\'actico, de las tareas, y de la participaci\'on en clases
+(a partir de la participaci\'on como escriba, y en los foros de Piazza).
+
+En particular:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}[h]{ll}
+    Certamen 1 y 2 & 50\% (40\% y 60\%)\\
+    Certamen Lab & 15\%\\
+    Tareas & 30\%\\
+    Participaci\'on & 5\% (incluye Piazza y escriba)
+  \end{tabular}
+\end{table}
+
+\section{Pol\'iticas de colaboraci\'on}
+\label{sec:col}
+
+El objetivo de las tareas es que practiquen el material del
+curso. Entonces, se incentiva a que colaboren y hagan las tareas en
+grupo. Si trabajan en grupo, sin embargo, tienen el deber consigo
+mismo y con los otros miembros del grupo de estar preparados para la
+reuni\'on del grupo. En principio, antes de dicha reuni\'on, deber\'ian
+pasar una hora tratando de resolver el problema solos. Si el grupo no
+puede resolver el problema, pueden hablar con otros grupos, o con los
+ayudantes, o postear dudas espec\'ificas online.
+
+Sin embargo, {\bf el documento de explicaci\'on del c\'odigo deben
+  escribirlo solos, sin ninguna clase de ayuda de parte de nadie
+  m\'as.}  A\'un si colaboraron con alguien m\'as. Si se les pide que
+identifiquen con qui\'en trabajaron en grupo, si lo hizo s\'olo,
+solamente coloque ``colaboradores: ninguno''. Si tomaron algo de la
+web, por favor tambi\'en den cr\'edito a la fuente, de la mejor manera
+escol\'astica. As\'i y todo, tienen que escribir la soluci\'on de la
+tarea en sus propias palabras. {\bf Ustedes deben ser capaces de
+  explicar el c\'odigo con sus propias palabras al staff del
+  curso.}. El plagio y otra conducta deshonesta no ser\'a tolerada en
+la universidad. Si tienen preguntas sobre la pol\'itica de
+colaboraci\'on del curso, por favor pregunten por Piazza. Si tienen
+dudas de haber infringido en la pol\'itica de colaboraci\'on, por
+favor ac\'erquense a hablar con el staff. Si bien los casos de plagio
+y copia deben ser manejados severamente, usualmente somos m\'as
+comprensivos si ustedes nos cuentan que si nos enteramos por terceros.
+
+{\bf Los certamenes te\'oricos y pr\'acticos son individuales}. No se
+permite la colaboraci\'on en ellos.
+
+\section{Libro}
+\label{sec:book}
+
+La referencia por excelencia de este curso es:
+
+\noindent Brian W. Kernighan and Dennis Ritchie. 1988. {\em The C
+  Programming Language} (2nd ed.). Prentice Hall Professional
+Technical Reference.
+
+La biblioteca tiene varias copias del libro en espa\~nol, y hay varias
+versiones online. Para revisar, daremos las correspondientes secciones
+(p. ej. 1.2 de K\&R), en vez de p\'aginas, porque las p\'aginas pueden
+variar con respecto a las ediciones con las que est\'en estudiando.
+
+As\'i y todo, lo que m\'as vale son las notas del curso, que pondremos en
+la web a medida que avance el curso. Hay mucho m\'as material en estas
+slides, contando ejemplos que el staff estima necesario para que
+entiendan como un computador hace lo que le pedimos que haga a trav\'es
+de un programa. Entonces, el libro es la refernencia b\'asica, pero las
+notas y las slides son imprescindibles.
+
+{\bf Cualquier cosa que se diga en la clase, o se vea en el libro o
+  las notas o el lab puede ser evaluado}.
+
+\section{Software y recursos web}
+\label{sec:website}
+
+Las tecnolog\'ias de este curso son las siguientes: Linux (sugiero
+Ubuntu), \verb|gcc|, \LaTeX y alg\'un editor de texto, yo sugiero
+Emacs. Una vez instalado Linux, a fin de tener todo lo necesario se
+debe hacer
+
+\begin{itemize}
+\item {\tt sudo apt-get install emacs}
+\item {\tt sudo apt-get install texlive}
+\item {\tt sudo apt-get install binutils build-essential manpages-posix-dev manpages-dev}
+\end{itemize}
+
+La p\'agina web del curso
+(\url{www.leoferres.info/2015_1_503208.html}) contiene links a
+versiones electr\'onicas de todos los handouts, las correcciones al
+material y notas del curso, y anuncios especiales. H\'aganse un tiempo
+todas las semanas para visitar los diferentes sitios asociados al
+curso: INFOALUMNOS (para notas y publicaci\'on de tareas, etc.),
+Piazza (para el foro, anuncios, y para la participaci\'on en clase),
+la p\'agina web propia tiene tambi\'en recursos como cheatsheets,
+software y otros links de inter\'es, y el canal IRC para preguntas en
+tiempo real.
+
+\section{Filmaci\'on del curso}
+\label{sec:recording}
+
+En el 2015, el staff tiene como objetivo filmar nuevamente el curso,
+como se hizo hace dos a\~nos, durante el primer semestre de 2013. Ahora
+tenemos mejor equipamiento y hemos aprendido de nuestros errores.
+
+La c\'amara esta usualmente apuntando al instructor del curso, y los
+alumnos no debieran aparacer en la filmaci\'on. Sin embargo, si alguno
+tiene problemas en aparecer en la filmaci\'on, por favor si\'entense atr\'as
+en la sala.
+
+Los videos deber\'ian aparecer durante la misma semana de la filmaci\'on
+en un link a ser difundido por la p\'agina web del curso, Piazza y el
+mail de INFOALUMNOS.
+
+% \section{Sobre el m\'etodo de ense\~nanza}
+% \label{sec:method}
+
+% El uso extensivo del pizarr\'on es una decisi\'on consciente:
+
+% \begin{itemize}
+% \item Les permite a los estudiantes pensar preguntas mientras se
+%   escribe
+% \item Les permite a los estudiantes tener tiempo para tomar notas
+% \item Les permite a los estudiantes saber qu\'e es cr\'itico de lo que
+%   se est\'a diciendo en clase
+% \item Les permite a los estudiantes saber que el instructor tambi\'en
+%   tiene que ``trabajar'' en escribir
+% \item Les permite a los estudiantes procesar lo que se dice, en mi
+%   opini\'on, mucho m\'as que con Powerpoint.
+% \item Les permite a los estudiantes ``seguir'' al profesor sin tener
+%   que mirar las slides/diapos
+% \end{itemize}
+
+% Adem\'as, trabajar con pizarra tiene un tinte ``old school'' que
+% entretiene, en nuestra opini\'on, y que hace m\'as f\'acil luego
+% seguir los videos por la web.
+
+% Este a\~no tambi\'en escribiremos los problems y el c\'odigo en las
+% pizarras, en vez del computador, como si fueran f\'ormulas
+% matem\'aticas. Toda la pr\'actica se dar\'a en los laboratorios, y los
+% c\'odigos demostrados en los labs y en clases estar\'an disponibles en
+% \verb+github+ en \url{https://github.com/leoferres/LP1}. Sin embargo,
+% se espera que el estudiante transcriba o al menos compile y ejecute
+% estos c\'odigos de ejemplo porque muchos contienen varias lecciones
+% que vale la pena aprender.
+
+\section{Ayuda extra}
+\label{sec:extrahelp}
+
+Esperamos que los estudiantes publiquen sus preguntas (y ayuden a
+contestar las preguntas de sus compa\~neros) en Piazza en
+\url{piazza.com/udec.cl/spring2015/503208/home}.
+
+Tamb\'en el staff pondr\'a horarios de oficina para que los alumnos puedan
+ir a hacer sus preguntas m\'as como 1:1. Pueden ir a cualquier horario
+de cualquiera de los miembros del staff.
+
+% Si hay suficiente inter\'es, Este a\~no por primera vez haremos un
+% Linux Install Fest, por si alguno de ustedes quiere traer su laptop o
+% desktop a instalar Linux (Ubuntu) con nosotros un s\'abado a la
+% ma\~nana. El Linux Fest se har\'a durante el primer o segundo fin de
+% semana, en horario a definir y publicar en la web.
+
+% Durante el Linux Install Fest, haremos también un mini-curso de
+% \verb+gcc+, \verb+emacs+ y \LaTeX. El objetivo es producir el programa
+% \verb+hello.c+, con el tradicional ejemplo ``Hello, World!'', y un
+% ``hello world'' en \verb+pdf+ usando \LaTeX.
+
+\begin{center}
+{\huge\bf Este curso tiene material genial}\\
+{\huge\bf Hagamos que sea el mejor curso de programaci\'on de la UdeC!!!}
+\end{center}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% mode: flyspell
+%%% ispell-local-dictionary: "castellano"
+%%% TeX-master: t
+%%% coding: utf-8
+%%% End:
