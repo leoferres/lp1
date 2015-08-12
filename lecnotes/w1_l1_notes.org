@@ -4,8 +4,7 @@
 
 ** Relevant info
 
-Slides for this are at [[slides/w1_l1_slides.pdf]], sources are also in
-the slides directory.
+Slides for this are [[https://github.com/leoferres/lp1/blob/master/slides/w1_l1_slides.pdf][here]], [[https://github.com/leoferres/lp1/blob/master/slides/w1_l1_slides.odp][sources]] are also in the slides directory.
 
 ** Important websites
 
