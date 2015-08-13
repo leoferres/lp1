@@ -1,4 +1,4 @@
-#+TITLE: Week 1 - Lecture 1
+#+TITLE: Week 1 - Lecture 2
 
 * Lecture notes <2015-08-13 Mon>
 
@@ -49,7 +49,7 @@
          pretty much it unless you want to request a pull to change
          stuff --> I'd be more than happy.
        - Notice difference between =git= and =github= (see slide)
-   - now, clone the lp repo, and do the exercises in
+   - now, clone the =lp1= repo, and do the exercises in
      =exercises/w1_ex1.org= (navigate using the console!)
 
  - Emacs:
