@@ -84,6 +84,17 @@
      - then do: =gcc hello.c -o hello=, and finally execute as
        =./hello=.
 
+** Resources
+
+Here are a few good refernce cards (aka, cheat sheets) for the tools
+we've seen in class:
+
+ - Linux & console: http://sites.tufts.edu/cbi/files/2013/01/linux_cheat_sheet.pdf
+ - Emacs: https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf
+ - irc: https://tkkrlab.nl/w/images/d/de/IRC_cheatsheet.pdf
+ - C: http://users.ece.utexas.edu/~adnan/c-refcard.pdf
+ - github: https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+
 ** Next class
 
 Read the tutorial part of the K&R book (first chapter). Copies in
