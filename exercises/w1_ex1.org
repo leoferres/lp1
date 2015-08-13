@@ -1,1 +1,86 @@
 * Exercises w1
+
+** Directories
+
+ These are some exercises to help you get the feel.
+
+ Enter the command cd blah
+
+ -> What happens?
+
+ Enter the command cd ..
+
+ Mind the space between "cd" and ".."! Use the pwd command.
+
+ -> What happens?
+
+ List the directory contents with the ls command.
+
+ -> What do you see?
+
+ -> What do you think these are?
+
+ -> Check using the pwd command.
+
+ Enter the cd command.
+
+ -> What happens?
+
+ Repeat step 2 two times.
+
+ -> What happens?
+
+ Display the content of this directory.
+
+ Try the command cd root
+
+ -> What happens?
+
+ -> To which directories do you have access?
+
+ Repeat step 4.
+
+ Do you know another possibility to get where you are now?
+
+** Files
+
+ Change directory to / and then to etc. Type ls; if the output is longer than your screen, make the window longer, or try Shift+PageUp and Shift+PageDown.
+
+ The file inittab contains the answer to the first question in this list. Try the file command on it.
+
+ -> The file type of my inittab is .....
+
+ Use the command cat inittab and read the file.
+
+ -> What is the default mode of your computer?
+
+ Return to your home directory using the cd command.
+
+ Enter the command file .
+
+ -> Does this help to find the meaning of "."?
+
+ Can you look at "." using the cat command?
+
+ Display help for the cat program, using the --help option. Use the option for numbering of output lines to count how many users are listed in the file /etc/passwd.
+
+
+** Getting help
+
+ Read man intro
+
+ Read man ls
+
+ Read info passwd
+
+ Enter the apropos pwd command.
+
+ Try man or info on cd.
+
+ -> How would you find out more about cd?
+
+ Read ls --help and try it out.
+
+** References
+
+  1. http://www.tldp.org/LDP/intro-linux/html/sect_02_05.html

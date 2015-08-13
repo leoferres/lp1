@@ -9,10 +9,81 @@
      if there's anything that you don't find clear enough.
   2. This lecture notes should be in github as well at
      https://github.com/leoferres/lp1/blob/master/lecnotes/w1_l2_notes.org
-  3.
+  3. Handout one has been uploaded. You can find it directly from the
+     [[https://piazza.com/class_profile/get_resource/icyxgtp2bob50a/id9evy0rbzg64f][Piazza site]]. The sources are also at the [[https://github.com/leoferres/lp1/blob/master/general/handout_503208_2015_2.pdf][github]] site.
 
 ** Lecture
 
+ - Linux
+   - Unix-like computer operating system first released on 5 October
+     1991 (Linus Torvalds), as of Feb 2015, 67.8% of web servers run
+     Linux
+     (https://en.wikipedia.org/wiki/Usage_share_of_operating_systems)
+   - I use the Xubuntu distro, you have Ubuntu there. Difference is
+     the software desktop environment (xfce for Xubuntu, Unity for the
+     GNOME desktop environment developed by Canonical Ltd for
+     Ubuntu). Basically the same... xfce is leaner, in my
+     view. Besides this, not much diff.
+   - Philosophy of Unix/Linux -> have small programs that may
+     compose. There are tons. See the console below.
+   - We don't talk much about the OS... not necessary at this stage.
 
+ - The console:
+   - xterm is the standard terminal emulator for the X Window System
+     (you can compile it yourself, fun and interesting!).
+   - Used to "talk" to the computer through commands.
+   - We use the embedded ubuntu terminal (xfce-terminal, =Ctrl-Alt t=)
+   - This is the list of *essential shell commands* we will see here:
+     =ls=, =cd=, =cp=, =mv=, =mkdir=, =rm=, =cat=, =less=, =man=
+     (mostly file handling programs).
+   - This is the way you tell the computer to do stuff.
+   - =Ctrl-Shift t= opens a new terminal tab. Do it.
+   - Two more commands: =irssi=, =git=
+     - irssi is a chat system. We will use it in class to "keep in
+       touch": do ask, point out errors, things you don't
+       undertand/I'm not being clear, etc. This is a learning tool!!
+       - irssi, /connect azu.inf.udec.cl, /join lp1 (and say hello!)
+     - git: versioning system. really hard for noobs.
+       - you only need to know the basics: =git clone
+         https://github.com/leoferres/lp1.git=, =git pull=, and that's
+         pretty much it unless you want to request a pull to change
+         stuff --> I'd be more than happy.
+       - Notice difference between =git= and =github= (see slide)
+   - now, clone the lp repo, and do the exercises in
+     =exercises/w1_ex1.org= (navigate using the console!)
+
+ - Emacs:
+   - *REALLY HARD*: but you'll get used to it. Don't give up now, tho,
+     you wimps.
+     - Open a file,
+     - Save a file,
+     - Basic navigation,
+     - Set mark, copy, cut and paste,
+     - Show undo and kill ring,
+     - Show C-g,
+     - Show search and replace,
+     - Split window and move to other window,
+     - Switch to other buffers,
+     - DO THE TUTORIAL!!! =C-h t=
+     - http://stackoverflow.com/questions/311221/what-to-teach-a-beginner-in-emacs
+
+ - C: the topic of this course... we won't say much about it right
+   now, 'cept at the end. We will compile our first code!
+
+ - gcc: GNU Compiler Collection
+   - we will compile and run our first C program today!!!
+     - Open emacs, open file =hello.c= and write:
+       #+BEGIN_SRC C
+       #include <stdio.h>
+       int main() {
+         printf("Hola, mundo!!"); // in Spanish, because reasons.
+       }
+       #+END_SRC
+     - save the file.
+     - then do: =gcc hello.c -o hello=, and finally execute as
+       =./hello=.
 
 ** Next class
+
+Read the tutorial part of the K&R book (first chapter). Copies in
+Spanish in the library.
