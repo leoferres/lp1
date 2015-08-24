@@ -24,7 +24,7 @@ Well, first, why *not*:
    - Manual memory mgmt
    - Pointers (death to!)
    - Subtle bugs: Stack, int overflow, out of bounds, NUL-terminated
-     strings, implicit conversions, dangling, pointers, and !many!
+     strings, implicit conversions, dangling pointers, and !many!
      others...
    - Low-level = super insecure
  - No modularity (namespaces...)
@@ -62,7 +62,6 @@ the same page. Glad to add more, if you find some.]
    programming. I know adults who still say things like school did not
    teach me any real world stuff. [Arun Iyer]
 
-
 *** Number systems
 
     Everything within the computer is an integer. Operations are
@@ -74,7 +73,9 @@ the same page. Glad to add more, if you find some.]
     humans (10 fingers)
 
     - E.g. $123_{10} = 1 x 10^2 + 2 x 10^1 + 3 x 10^0$
+
     - E.g. $1.46_{10} = 1 x 10^0 + 4 x 10^{-1} + 6 x 10^{-2}$
+                             1   +    .4       +     .06 = 1.46
 
   2. The BINARY system (B=2, 0 \leq d < 2), most intuitive for
      computers (2 voltages, 1 bit) [although see [[https://en.wikipedia.org/wiki/Nikolay_Brusentsov][Nikolay Brusentsov]]'s
@@ -90,6 +91,10 @@ the same page. Glad to add more, if you find some.]
                ----                   |                       ---
                1100                   .                       011
 #+END_EXAMPLE
+
+     3 2 1 0
+     1 1 0 0 
+     8 4 0 0 = 12
 
 And then 12.375 (a nicely divisible number) is 1100.011
 
@@ -124,7 +129,7 @@ can be an instruction, an integer, the character 'A', etc.]
  - *Byte* (8 bits) /most important representation in today's
    computers/
    - Main memory is byte-addressable (each address identifies a
-     _single_ byte of memory
+     _single_ byte of memory)
 
 #+BEGIN_EXAMPLE
 7 6 5 4 3 2 1 0 // bit cell is 2 to the power of this
