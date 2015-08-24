@@ -68,7 +68,8 @@
      - http://stackoverflow.com/questions/311221/what-to-teach-a-beginner-in-emacs
 
  - C: the topic of this course... we won't say much about it right
-   now, 'cept at the end. We will compile our first code!
+   now, 'cept at the rationale of why use it. But we will compile our
+   first code!
 
  - gcc: GNU Compiler Collection
    - we will compile and run our first C program today!!!

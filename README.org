@@ -7,20 +7,30 @@ http://leoferres.github.io/503208_2015_2.html.
 The directory structure is as follows:
 
 #+BEGIN_EXAMPLE
-lp1
+. [lp1]
 ├── examples
 │   └── w1_eg1.org
 ├── exercises
+│   ├── w1_ex1.html
 │   └── w1_ex1.org
 ├── general
+│   ├── handout_503208_2015_2.pdf
+│   ├── handout_503208_2015_2.tex
 │   └── UdeClass_master.otp
+├── handout_503208_2015_2.aux
+├── handout_503208_2015_2.log
+├── lecnotes
+│   ├── w1_l1_notes.org
+│   ├── w1_l2_notes.org
+│   └── w2_notes.org
 ├── README.org
 ├── slides
 │   ├── w1_l1_slides.odp
-│   └── w1_l1_slides.pdf
-├── solutions
-│   └── w1_ex1_sol.org
-└── w1_l1_notes.org
+│   ├── w1_l1_slides.pdf
+│   ├── w1_l2_slides.odp
+│   └── w1_l2_slides.pdf
+└── solutions
+    └── w1_ex1_sol.org
 #+END_EXAMPLE
 
 This is the README.org file. (Captain obvious strikes again.)
@@ -38,11 +48,15 @@ slides I used in class, plus the slides source code in OpenOffice.
 The =general= folder contains files to make the course
 self-contained. So far (<2015-08-10 Mon>) it only contains the
 template for the slides for the course... which are pretty
-basic. Content above form :)
+basic. Content before form :)
 
 Finally, and importantly, all lecture notes are in the =lecnotes=
 folder. The naming convention is the same as before: the week number,
-the lecture number =_lX=, and the suffix =_notes.org=.
+the lecture number =_lX=, and the suffix
+=_notes.org=. <2015-08-23 dom> Notice that the naming convention of
+files has changed. Since we have switched from two classes per week to
+only one, I will now name lecture notes as =wX_notes.org=, rather than
+=wX_lY_notes.org=.
 
 I definitely accept pull requests. My students are actually encouraged
 to make these materials better.

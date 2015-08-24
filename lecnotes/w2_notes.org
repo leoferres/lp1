@@ -1,0 +1,299 @@
+#+TITLE: Week 2
+
+* Lecture notes <2015-08-24 lun>
+
+** Relevant info
+
+ - Notice that the naming convention of files has changed. Since we
+   have switched from two classes per week to only one, I will now
+   name lecture notes as =wX_notes.org=, rather than
+   =wX_lY_notes.org=.
+ -
+
+
+** Lecture
+
+*Objective*: Give an overview of programming and the C programming
+language.
+
+*** Introduction: Why C
+
+Well, first, why *not*:
+
+ - Old (and...? :)
+ - Hard
+   - Manual memory mgmt
+   - Pointers (death to!)
+   - Subtle bugs: Stack, int overflow, out of bounds, NUL-terminated
+     strings, implicit conversions, dangling, pointers, and !many!
+     others...
+   - Low-level = super insecure
+ - No modularity (namespaces...)
+
+Among many others, I will update this list as I'm reminded of them
+while I code.
+
+Now, why *yes*:
+
+[Most of the arguments in favor of teaching C were taken from this
+[[http://qr.ae/RFneW7][Quora question]], which I share. Plus some more general remarks given on
+the same page. Glad to add more, if you find some.]
+
+ - Still one of the most used programming languages in the
+   world. Imagine, we still have COBOL programs going around, C will
+   be here for a long time. [Tiobe, Redmonk rankings, take with a
+   grain of salt]
+
+ - Low Level Understanding of What's going on under the hood (mem
+   mgmt).
+
+ - Portability (easier to implement a C compiler than, say, a java
+   runtime)
+
+ - C is a Native language, meaning it's compiled directly to machine
+   code (others run on virtual machines... NOTICE: disagreement on
+   what "native" is), makes it really fast, really small, and really
+   "lean"
+
+ - We'll always need C programmers; it's not going away anytime soon.
+   Linux OS, of embedded systems, and of a great many systems-level
+   applications.
+
+ - Finally, difference between computer science and real world
+   programming. I know adults who still say things like school did not
+   teach me any real world stuff. [Arun Iyer]
+
+
+*** Number systems
+
+    Everything within the computer is an integer. Operations are
+    carried out on integers.
+
+**** The different bases
+
+ 1. The DECIMAL system (B=10, 0 \leq d < 10), most intuitive for
+    humans (10 fingers)
+
+    - E.g. $123_{10} = 1 x 10^2 + 2 x 10^1 + 3 x 10^0$
+    - E.g. $1.46_{10} = 1 x 10^0 + 4 x 10^{-1} + 6 x 10^{-2}$
+
+  2. The BINARY system (B=2, 0 \leq d < 2), most intuitive for
+     computers (2 voltages, 1 bit) [although see [[https://en.wikipedia.org/wiki/Nikolay_Brusentsov][Nikolay Brusentsov]]'s
+     1958 [[https://en.wikipedia.org/wiki/Ternary_computer][ternary computer]] in Russia]
+
+    - E.g. $12.375_{10} =$
+#+BEGIN_EXAMPLE
+      D      Q   R                    |    2 x .375 =  .75  -> 0  (MSD)
+      12/2 = 6   0  LSD (! D=digit)   |    2 x .750 = 1.5   -> 1
+      6/2  = 3   0                    |    2 x .5   = 1.0   -> 1  (LSD)
+      3/2  = 1   1                    |    2 x 0
+      1/2  = 0   1  MSD               |
+               ----                   |                       ---
+               1100                   .                       011
+#+END_EXAMPLE
+
+And then 12.375 (a nicely divisible number) is 1100.011
+
+  3. The HEXADECIMAL system (B=16, 0 \leq d < 16; d =
+     {0-9A-F}). Compromise between humans and computers. Bin numbers
+     can get real long, hex is shorter. Dec -> Bin conversion is not
+     trivial, bin -> hex is easier.
+
+         - E.g. $123_{16} =$
+#+BEGIN_EXAMPLE
+1 1 2 3 4 1 2 3 4
+1    2        3
+- ------- -------
+1 0 0 1 0 0 0 1 1
+#+END_EXAMPLE
+
+*NOTICE:* Do learn numbers in Bin/Hex from 0-15.
+
+**** Data Organization
+[Data is what you define it to be, Randall Hyde, [[http://www.plantation-productions.com/Webster/www.artofasm.com/index.html][AoA]], the integer 65
+can be an instruction, an integer, the character 'A', etc.]
+
+ - *Bits* ([Bi]nary digi[t]s)
+   - Smallest unit: presence/absence of electricity (1s and 0s)
+   - Hard to work with practically
+
+ - *Nybbles* (4 bits) /or nibble->byte... get it? bite and nibble?? no?/
+   - Historical, 1977 citibank for cash registers
+   - Computer archeology (though I've seen the word come up lately,
+     don't remember the context)
+
+ - *Byte* (8 bits) /most important representation in today's
+   computers/
+   - Main memory is byte-addressable (each address identifies a
+     _single_ byte of memory
+
+#+BEGIN_EXAMPLE
+7 6 5 4 3 2 1 0 // bit cell is 2 to the power of this
+0 0 0 0 0 0 0 0 // each cell is a bit, whole thing a byte
+#+END_EXAMPLE
+
+*Q*: How many different values can a byte hold?
+
+ - WORD (16 bits)
+ - DWORD (32 bits) D = double
+ - QWORD (64 bits) Q = quadruple (or quad)
+
+These are the size of machine registers, and determine the
+architecture you buy.
+
+*In summary*: Data are organized in ever-increasing sizes of the
+minimal unit, the bit (and notice they are all powers of 2, given the
+binary nature of computers).
+
+*** Architecture
+
+Huge simplification
+
+#+BEGIN_EXAMPLE
+CPU -> register (x86, W=32)
+ ^
+-------------------- System bus
+ ^          ^ Main Mem
+I/O      | | | | | | | | |  ... | | |
+         2^{W}-1                    0
+#+END_EXAMPLE
+
+where $W$ is size of "word"... usually 64 bits nowadays.
+
+*Q*: What 2 ops do CPU do with memory? R&W
+
+ - _CPU_:
+   - Read/write to/from mem, and I/O to the register through the FSB
+   - Does actual computation (=incr  %eax=)
+   - Transparent to us (we use a "high" level language)
+
+ - _Memory_: NOT TRANSPARENT TO US! must know how data are represented
+   in mem.
+   - Flat array of $2^W$ bytes, each cell with an address $0
+     .. 2^W-1$, that is 4,294,967,296 (-1, since it starts at 0), the
+     famous 4GB of RAM in 32 bit machines.
+
+So, now, how do we get things like decimals (3.14) or characters ('A')
+if we can only handle integers?
+
+*** C types and memory representation
+
+Four basic types: =char=, =int=, =float=, =double= plus 4 opt
+specifiers: =signed= (default), =unsigned=, =short=, =long=.
+
+ - =char=: 8 bits (ASCII is 7 bits, encoding lower/upper case English
+   alphabet), signed/unsigned
+ - =int=: usually size of W (not always, check compiler/hardwar, =man
+   limits.h=), nowadays common for dekstop 64- 32-bits; 4/8 bytes
+ - =float= and =double=: Here be dragons. (come back to this below)
+
+**** C type modifiers
+
+ 1. =short= (=int=): at least 16 bits
+ 2. =long= (=int=): at least 32 bits
+ 3. =long long= (=int=): at least 64 bits (since C99)
+ 4. signedness: =signed=, =unsigned=
+    - positive/negative integers
+    - modifier to basic types =char=, =ints=, but not =floats= or
+      =doubles= (there is no equivalent machine code operations for
+      the CPU to execute). [[http://stackoverflow.com/a/512071/50305][SO Answer]]
+    - signedness is represnted by setting MSB to 0 if positive, 1 if
+      negative. =signed= is default and therefore omitted.
+    - Two's complement:
+      - Neg numbers are represented by inverting all bits and
+        adding 1.
+
+	E.g.  4 in base 2, =signed char= is 00000100
+	E.g. -4 in base 2, =signed char= is 11111100
+	#+BEGIN_EXAMPLE
+	1.            000000100
+	2. (invert)   111111011
+	3. (add 1)    111111100
+	#+END_EXAMPLE
+
+*Try yourself*: =gbase -s -d -4= (=gabse= should be installed in your
+systems).
+
+Some examples:
+
+#+BEGIN_EXAMPLE
+
+byte state    signed     unsigned
+00000000         0          0
+00000001         1          1
+01111110        126        126
+10000000       -128        128
+11111110        -2         254
+11111111        -1         255
+#+END_EXAMPLE
+
+ 5. =float=, =double=: diff is that =float= is 32 bits/ =double= is 64
+    (in our archs), there's special hardware to deal with FP
+    arithmetics.
+
+    - =float=, =double= in memory: a sign bit S, 8 bits for exponent
+      E, (32/64)-(S+E) for the significand (23 for 32 bits, 56 for 64,
+      more precision, P).
+
+Notice these special cases, however:
+
+#+BEGIN_EXAMPLE
+S    E    Interpretation
+0    0          +0
+1    0          -0
+0   255         $+\infty$
+1   255         $-\infty$
+0   255         nan, if P not 0
+1   255         nan, if P not 0 (nan = not a number, undefined in R, 0/0)
+
+else some float...
+
+#+END_EXAMPLE
+
+ - Converting floating point to binary: 12.375 is $1.100011 x 2^3$
+   - E is 3, biased 127 is 130 = 01000010, thus 
+
+     #+BEGIN_EXAMPLE
+     0 01000010 100011[0]*17 times
+     S     E        P
+     #+END_EXAMPLE
+
+*Also*: some numbers cannot be represented perfectly in floats and
+doubles (same as in base, think 10/3): E.g. 0.1 in binary is 0.00011,
+repeated /ad infinitum/, but we cannot represent infinity, so we chop
+at 23 or 56 bits and finally rounding errors creep in.
+
+#+BEGIN_EXAMPLE
+0.10000000000000000055511151231257021181583404541015625 > 0.1
+#+END_EXAMPLE
+
+Discuss [[file:~/Dropbox/website/lp1/code/w2_c1.c]]
+
+Is all this stuff important in programming: Yes, it is.
+
+ - Date: Feb 25, 1991
+ - Location: Dharam, S Arabia
+ - System: Patriot Antiballistic Missile
+ - Failure: PABM fails to track incoming Scud (Iraqi missile)
+ - Result: 28 people dead
+ - Cause: Rounding error
+   - Computer internal clock @ 1/10 sec, info stored in 24-bit fixed
+     point register
+   - 1/10 has non-terminating binary expansion (as we saw before)
+   - cut at 24 bits error introduced every 10 secs is 0.095 secs
+   - PABM up for 100 hrs = 100 x 60 x 60 x 10 = 0.34 secs
+   - Scuds travel 1/2 km in that time.
+
+For more info: go to [[http://www.gao.gov/products/IMTEC-92-26]]
+
+*** C
+ Write C code for hello world, ask them to copy, compile and run it,
+ leave  code on the slide/screen.
+
+ Now switch to blank, ask them to write it from memory (10 mins)
+
+
+** Resources
+
+
+** Next class
