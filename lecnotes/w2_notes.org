@@ -10,7 +10,6 @@
    =wX_lY_notes.org=.
  -
 
-
 ** Lecture
 
 *Objective*: Give an overview of programming and the C programming
@@ -251,7 +250,7 @@ else some float...
 #+END_EXAMPLE
 
  - Converting floating point to binary: 12.375 is $1.100011 x 2^3$
-   - E is 3, biased 127 is 130 = 01000010, thus 
+   - E is 3, biased 127 is 130 = 01000010, thus
 
      #+BEGIN_EXAMPLE
      0 01000010 100011[0]*17 times
@@ -292,8 +291,10 @@ For more info: go to [[http://www.gao.gov/products/IMTEC-92-26]]
 
  Now switch to blank, ask them to write it from memory (10 mins)
 
-
 ** Resources
 
+ - =gbase=, nice base changing little program
 
 ** Next class
+
+ - Operators and expressions, readings: K&R 2.1-2.6, 2.8-2.10
