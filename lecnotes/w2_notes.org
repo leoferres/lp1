@@ -75,7 +75,7 @@ the same page. Glad to add more, if you find some.]
     - E.g. $123_{10} = 1 x 10^2 + 2 x 10^1 + 3 x 10^0$
 
     - E.g. $1.46_{10} = 1 x 10^0 + 4 x 10^{-1} + 6 x 10^{-2}$
-                             1   +    .4       +     .06 = 1.46
+			     1   +    .4       +     .06 = 1.46
 
   2. The BINARY system (B=2, 0 \leq d < 2), most intuitive for
      computers (2 voltages, 1 bit) [although see [[https://en.wikipedia.org/wiki/Nikolay_Brusentsov][Nikolay Brusentsov]]'s
@@ -88,12 +88,12 @@ the same page. Glad to add more, if you find some.]
       6/2  = 3   0                    |    2 x .5   = 1.0   -> 1  (LSD)
       3/2  = 1   1                    |    2 x 0
       1/2  = 0   1  MSD               |
-               ----                   |                       ---
-               1100                   .                       011
+	       ----                   |                       ---
+	       1100                   .                       011
 #+END_EXAMPLE
 
      3 2 1 0
-     1 1 0 0 
+     1 1 0 0
      8 4 0 0 = 12
 
 And then 12.375 (a nicely divisible number) is 1100.011
@@ -103,7 +103,7 @@ And then 12.375 (a nicely divisible number) is 1100.011
      can get real long, hex is shorter. Dec -> Bin conversion is not
      trivial, bin -> hex is easier.
 
-         - E.g. $123_{16} =$
+	 - E.g. $123_{16} =$
 #+BEGIN_EXAMPLE
 1 1 2 3 4 1 2 3 4
 1    2        3
@@ -159,7 +159,7 @@ CPU -> register (x86, W=32)
 -------------------- System bus
  ^          ^ Main Mem
 I/O      | | | | | | | | |  ... | | |
-         2^{W}-1                    0
+	 2^{W}-1                    0
 #+END_EXAMPLE
 
 where $W$ is size of "word"... usually 64 bits nowadays.
@@ -205,7 +205,7 @@ specifiers: =signed= (default), =unsigned=, =short=, =long=.
       negative. =signed= is default and therefore omitted.
     - Two's complement:
       - Neg numbers are represented by inverting all bits and
-        adding 1.
+	adding 1.
 
 	E.g.  4 in base 2, =signed char= is 00000100
 	E.g. -4 in base 2, =signed char= is 11111100
