@@ -1,0 +1,165 @@
+#+TITLE: Week 3
+
+* Lecture notes <2015-08-31 lun>
+
+** Relevant info
+
+ -
+
+** Lecture
+
+*Objective*: Learn and become familiar with C expressions and
+operators.
+
+*Remember*: Data types:
+
+ - integers: =char=, =int=
+ - floating point: =float=, =double=
+ - (qualifiers): =short=, =long=, =signed=, =unsigned=
+
+Now... let's work on new stuff.
+
+*** Literals and Expressions
+
+ *Def'n*: a /literal/ is a notation for representing a fixed value in
+ source code. Some examples:
+
+ #+BEGIN_EXAMPLE
+ 212           /* Legal int literal */
+ 078           /* Illegal int literal: 8 is not an octal digit */
+ 0x4b          /* hexadecimal */
+ 30ul          /* unsigned long */
+ 3.14159       /* Legal float literal */
+ "hello, dear" /* string literal */
+ #+END_EXAMPLE
+
+ *Def'n*: An /expression/ is a legal combination of explicit values
+ (=2=), constants (=PI=), variables (=r=), operators (=*=, times), and
+ functions (=sqrt()=) that produce a value (of some type, the =area =
+ PI*sqrt(r)= or =circumference = $2*PI*r$=) through a process called
+ /evaluation/. Every expression consists of at least one operand and
+ can have one or more operators. Operands are values, whereas
+ operators are symbols that represent particular actions. The
+ following are expressions that are legal in the C language.
+
+ #+BEGIN_EXAMPLE
+ a = 6;
+ c = a + b; /* though b is not defined */
+ x <= y
+ ++j;
+ #+END_EXAMPLE
+
+*** Constants
+
+ - *Def'n*: A value that cannot be altered during program execution.
+
+3 ways to declare a constant in C:
+
+  - =#define=: grab the text of a file and place it directly into the
+    current file. =#define [identifier name] [value]=, =#define PI
+    3.14159=.
+
+  - =const=: a keyword applied to a data type that indicates that the
+    data is constant (does not vary during program execution). =const
+    double PI = 3.14159=, we cannot then redefine =PI=. Try it:
+
+    #+BEGIN_SRC C
+    int main(void) {
+    const PI = 3.1415;
+    PI = 3.141592;
+    return 0;
+    }
+    #+END_SRC
+
+A character constant is an integer, written as one character within
+single quotes, such as ='x'=. (see =man ascii=).
+
+We can also have string constants, either by declaring them, or by
+using =char *=, turning into an unnamed, static array of characters,
+and this unnamed array may be stored in read-only memory, and which
+cannot necessarily be modified. =char *p = "string literal";= (but
+compare =char a[] = "string literal";=), see [[http://stackoverflow.com/a/10187933/50305][here]] for more on the
+difference.
+
+Be careful to distinguish between a character constant and a string
+that contains a single character: 'x' is not the same as "x"
+
+  - =enum= (enumeration constant, in K&R): A data type consisting of a
+    set of named values, names are usually identifiers that behave as
+    constants in the language. a convenient way to associate constant
+    values with names (many =#define='s otherwise...)
+
+#+BEGIN_EXAMPLE
+enum boolean {NO, YES}; /*why NO first?*/
+enum months { JAN = 1, FEB, MAR, APR, MAY, JUN,
+ JUL, AUG, SEP, OCT, NOV, DEC };
+ /* FEB = 2, MAR = 3, etc. */
+#+END_EXAMPLE
+
+*Important*: A constant expression is an expression that involves only
+constants. Such expressions may be evaluated at during compilation
+rather than run-time (see below).
+
+*** Variables (abbrev: vars)
+
+ - *Def'n*: a facility for storing data. Unlike constants, their values
+*can* be modified during program execution.
+
+ - *Syntax*: ~type var_name (= value )~
+
+ - *Example*: ~int a; int b = 8~
+
+ /Declaration/ vs. /initialization/:
+
+  - vars must be *declared* before use: ~int lower, upper, step~
+  - vars may be initialized at declaration: ~int lower=1~
+    - *Q*: What happens if a variable is declared but no
+      initialized? Try it!
+  - ~va_name~ restrictions:
+    1. can use letters, digits or the underscore =_=
+    2. Only 31 first characters matter
+    3. may *not* begin with a number or a [[http://tigcc.ticalc.org/doc/keywords.html][reserved word]].
+
+** Operators (abbrev: ops)
+
+   *!! WARNING !!*: Associativity of ops (next lecture)
+   *!! WARNING !!*: casting floats! (next lecture)
+
+   - Binary arithmetic ops: ~+~, ~-~, ~*~, ~/~, ~%~
+   - Relational & logical ops: ~>~, ~>=~, ~<~, ~<=~, ~!=~, ~==~; ~&&~,
+     ~||~ (inclusive or). Logical ops evaluate left-to-right,
+     short-circuits. *0 evaluates to False in C, everything else evals
+     to true*
+   - Increment and decrement ops: ~++~ (adds 1), ~--~ (subtracts 1)
+     - *!! WARNING !!*: cannot be applied to expressions: ~(j+1)++~;
+     - *!! WARNING !!*: prefix or postfix, order matters! see next
+       lecture
+   - Bitwise ops: ~&~ (and), ~|~ (or), ~^~ (excl or), ~<<~, ~>>~ (bit
+     shifting), ~~~ (one's complement):
+     - E.g.: Devide or multiply by powers of 2 (very efficient) ~a=1;
+       b=a<<1~
+     - E.g.: This checks if a number is a power of 2. Exercise,
+       explain why: src_C{(num != 0) && (num & (~num + 1)) ==
+       num}. The solution is in my handwritten notes on the web, but
+       try to explain it in your own words first!
+   - Assignment ops: ~=~, ~+=~, ~-=~, ~*=~, and the rest of the
+     arithmetic, logical and bit operators.
+   - Misc Operators: ~sizeof()~ (returns the size of an variable), ~&~
+     (returns the address of an variable), ~*~ (pointer to a
+     variable), ~?:~ (ternary conditional Expression).
+
+Discuss =vartypes.c= (where is this file??)
+
+*BUT!*: dodging the question... what goes on with =.c= files??? What
+does =gcc= do? (simplified)
+
+[[./compilation_process.png]]
+
+** Resources
+
+ -
+
+** Next class
+
+ - Order of evaluation... like in mathematics, what op you put where
+   actually matters! readings: K&R 2.7 and 2.12, n1570 6.3.
