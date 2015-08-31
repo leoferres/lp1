@@ -201,18 +201,20 @@ specifiers: =signed= (default), =unsigned=, =short=, =long=.
     - modifier to basic types =char=, =ints=, but not =floats= or
       =doubles= (there is no equivalent machine code operations for
       the CPU to execute). [[http://stackoverflow.com/a/512071/50305][SO Answer]]
-    - signedness is represnted by setting MSB to 0 if positive, 1 if
+    - signedness is represented by setting MSB to 0 if positive, 1 if
       negative. =signed= is default and therefore omitted.
     - Two's complement:
       - Neg numbers are represented by inverting all bits and
 	adding 1.
 
-	E.g.  4 in base 2, =signed char= is 00000100
-	E.g. -4 in base 2, =signed char= is 11111100
+	E.g.  4 in base 2, =(signed) char= is 00000100
+	E.g. -4 in base 2, =(signed) char= is 11111100
 	#+BEGIN_EXAMPLE
-	1.            000000100
-	2. (invert)   111111011
-	3. (add 1)    111111100
+	1.            00000100
+	2. (invert)   11111011
+	3. (add 1)    00000001
+	              --------
+	4. result     11111100
 	#+END_EXAMPLE
 
 *Try yourself*: =gbase -s -d -4= (=gabse= should be installed in your
@@ -221,7 +223,6 @@ systems).
 Some examples:
 
 #+BEGIN_EXAMPLE
-
 byte state    signed     unsigned
 00000000         0          0
 00000001         1          1
@@ -254,8 +255,8 @@ else some float...
 
 #+END_EXAMPLE
 
- - Converting floating point to binary: 12.375 is $1.100011 x 2^3$
-   - E is 3, biased 127 is 130 = 01000010, thus
+ - Converting floating point to binary: +12.375 is $1.100011 x 2^3$
+   - E is 3, biased 127 is 130 = 10000010, thus
 
      #+BEGIN_EXAMPLE
      0 01000010 100011[0]*17 times

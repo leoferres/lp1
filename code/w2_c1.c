@@ -21,7 +21,7 @@
    for a nice treatment of the issue. */
 int main(int argc, char *argv[]) {
 
-/* EEE 754 floating point numbers can represent positive or negative
+/* IEEE 754 floating point numbers can represent positive or negative
    infinity, and NaN (not a number).  */
 
   printf ("%f\n",1.0f/.0f); /* division by zero, no way to evenly
