@@ -1,0 +1,57 @@
+#+title: Programming 503208: Study Guide 1
+#+author: Leo Ferres
+#+email: lferres@inf.udec.cl
+
+* Introduction
+
+This study guide will try to help you consolidate your knowledge of
+types, constants and variables in the C programming language. Remember
+that the equal sign (~=~) means assignment (not equality), so ~b=a~ means
+that ~b~ takes the value stored in ~a~, so that now, in fact, a will be
+equal (~==~) to ~b~.
+
+* Exercises
+
+** Answer the following questions
+
+In Spanish if you want, you may also want to search the web, because I
+want real examples of the following.
+
+ 1. Look for three examples of =enum= in a real program? Explain them.
+ 2. Look for three examples of =const= in a real program? Explain
+    them.
+ 3. Look for three examples of =#define= in a real program? Explain
+    them.
+ 4. Finally, what do you think is the difference between the three
+    kinds of const expressions?
+
+** =printf= the following statements and explain the results
+
+ 1. ~char b=300~
+ 2. ~short c= -32768-1~
+ 3. ~unsigned char d = -1~
+ 4. ~unsigned float e = 3.0~
+ 5. ~unsigned char f = 255 + 1~
+ 6. ~signed char 23_and_me = 2~
+
+** Patriot anti-ballistic missile
+
+I told you a story of how rounding affected the PABM system. Here's
+the report: http://www.fas.org/spp/starwars/gao/im92026.htm For those
+of you who can already code, I dare (yes, dare) you to reproduce the
+failure in C, just using a loop and a float data type. I don't care
+how you show that the error accumulated, insofar you do! :)
+
+** Bonus (Code Golf, for those who know how to program already):
+
+Write code to build the following triangle, following the pattern
+listed there (notice that the median is the sequence of uneven numbers
+1, 3, 5, 7, ...
+
+#+BEGIN_EXAMPLE
+        1
+      2 3 2
+    3 4 5 4 3
+  4 5 6 7 6 5 4
+5 6 7 8 9 8 7 6 5
+#+END_EXAMPLE
