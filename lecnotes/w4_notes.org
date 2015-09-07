@@ -1,0 +1,121 @@
+#+TITLE: Week 3
+
+* Lecture notes <2015-09-07 lun>
+
+** Relevant info
+
+ - Emacs =.emacs= in my Dropbox folder.
+
+** Lecture
+
+*Objective*: Learn about what ops come first, and the ugly truths of
+type conversion. [K&R 2.7 and 2.12, n1570 6.3]
+
+*Remember*:
+
+ - literals and expressions
+ - constants: do not change, decl/init'd at compile time
+ - variables: they change!
+ - operators (abbreviated ops), and operands
+
+Now... let's work on new stuff.
+
+*** Operator precedence: [[http://en.cppreference.com/w/c/language/operator_precedence][C op prec]]
+
+    - If no parens, the /precedence/ and /associativity/ affect the
+      grouping and evaluation of operands.
+
+#+BEGIN_EXAMPLE
+1. r = a+b/c-d  expression to evaluate
+2. b/c          '/' binds tighter
+3. a+(2)        '+' associates left-to-right
+4. (3)-d        '-' last op left (also left-to-right)
+5. r = (4)      '=' lowest precedence.
+#+END_EXAMPLE
+
+Let's look at some real code:  [[file:~/Dropbox/website/lp1/code/w4_c1.c::51][w4_c1.c]]
+
+*** Type conversion and casting (not all cases!)
+
+    - short intro to the topic... dry, but important
+      - promotion
+      - floating type
+      - truncation
+      - integral conversion
+
+**** Integral promotion
+
+     - no info lost ("smaller" to "bigger" type: =char= -> =int=,
+       =short= -> =int=)
+     - =char=, =short=, =int=, (signed or unsigned) =enum= consts, may
+       be used in integer operations.
+     - Let's look at some real code: [[file:~/Dropbox/website/lp1/code/w4_c1.c::76][w4_c1.c]]
+       - At first look, the expression (a*b)/c seems to cause
+         arithmetic overflow because signed characters can have values
+         only from -128 to 127 (in most of the C compilers), and the
+         value of subexpression ‘(a*b)’ is 1200 which is greater
+         than 128. But integer promotion happens here in arithmetic
+         done on char types and we get the appropriate result without
+         any overflow.
+       - Look at another example:
+
+	 #+BEGIN_SRC C
+           #include <stdio.h>
+
+           int main() {
+             char a = 0xfb;
+             unsigned char b = 0xfb;
+
+             printf("a = %c", a);
+             printf("\nb = %c", b);
+
+             if (a == b)
+               printf("\nSame");
+             else
+               printf("\nNot Same");
+             return 0;
+           }
+	 #+END_SRC
+
+	   Output is same character, but they are *not* the same! =a=
+         and =b= have same binary representation as char. But when
+         comparison operation is performed on =a= and =b=, they are
+         first converted to int. =a= is a signed char, when it is
+         converted to int, its value becomes -5 (signed value of
+         0xfb). =b= is unsigned char, when it is converted to int, its
+         value becomes 251. The values -5 and 251 have different
+         representations as int, so we get the output as "Not Same".
+
+**** Integers and floats
+
+     - implicit conversion: e.g., [[file:~/Dropbox/website/lp1/code/w4_c1.c::10][w4_c1.c, l10]]
+     - =float= -> =int=, then fractional part is lost (see the
+       rounding error?! :S) [[file:~/Dropbox/website/lp1/code/w4_c1.c::86][tc7]]
+     - =int= -> =float=, and val not exactly representable, result is
+       next higher or lower representable value... one such number is
+       16777217, weird, look! [[file:~/Dropbox/website/lp1/code/w4_c1.c::146][tc10]], [[file:~/Dropbox/website/lp1/code/w4_c1.c::155][tc11]]
+
+**** Floats
+
+     - if less precise to more precise (=float= -> =double=), then no
+       change
+     - if more precise to less precise (=double= -> =float=), then
+       next higher or lower representable value
+     - if out or range, undefined behavior
+
+**** Explicit conversion between types, AKA casting
+
+     - special syntax =(datatype)operand=, e.g., =b=(int)c= [[file:~/Dropbox/website/lp1/code/w4_c1.c::160][tc12]]
+     - no implicit conversion compiler error
+
+** Resources
+
+ - There is a video I prepared back in 2013 explaining the code in
+   file [[file:~/Dropbox/website/lp1/code/w4_c1.c][w4_c1.c]]. It can be found [[http://www.inf.udec.cl/~leo/courses/503208/fall2013/videos/limits.mp4][here]].
+ - There is a nice article about this in [[https://www.safaribooksonline.com/library/view/c-in-a/0596006977/ch04.html][Safari Books Online]]
+ - A very important class of conversions we left out because of time
+   is arithmetic conversions. A very good summary is available [[http://c0x.coding-guidelines.com/6.3.1.8.html][here]].
+
+** Next class
+
+ - Finally, next class we will see some C (pun!)
