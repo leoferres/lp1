@@ -60,19 +60,19 @@ void tc5() {
      double d = 4.;
 
      float res0 = b/c;
-     printf ("%f\n",res0);
+     printf ("res0 = %f\n",res0);
 
      double res1 = a + b / d + c; // equal to 4 or to 4.5?
-     printf ("%f\n",res1);
+     printf ("res0 =%f\n",res1);
 
      double res2 = (a + b)/d + c; // equal to 3 or to 3.75?
-     printf ("%f\n",res2);
+     printf ("res0 =%f\n",res2);
 
      double res3 = a/b + d; // equal to 4 or to 4.5?
-     printf ("%f\n",res3);
+     printf ("res0 =%f\n",res3);
 
     int res4 = e/b;
-    printf ("%d\n",res4);
+    printf ("res0 = %d\n",res4);
 }
 
 void tc6() {

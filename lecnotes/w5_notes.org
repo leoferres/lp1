@@ -1,0 +1,159 @@
+#+TITLE: Week 5
+
+* Lecture notes <2015-09-14 lun>
+
+** Relevant info
+
+ - Don't forget to go over the material I published on the website.
+ - Create a =git= repo, send me the name
+   - Put all your work in it.
+ - This is the first class with some flow control.
+   - K&R 2.11, 3.1-3.4, 3.8
+
+** Lecture
+
+*Objective*: Learn about =if-then-else= constructions, also called
+*conditionals*.
+
+*Remember*:
+ - types
+ - constants
+ - variables
+ - logical ops
+ - 0 is false, anything else is true
+
+Now... let's work on new stuff.
+
+*** Story:
+    - Movie Angels and Demons (2009), starring Tom Hanks (book by Dan
+      Brown)
+      - Bomb somewhere in the Vatican (anti-matter!)
+      - illuminated by some lightbulb
+
+    The question is: where is the bomb?
+
+    - Solution 1: O(n, worst-case)
+      - turn $n$ switches 1 by 1, until lightbulb goes out
+      - what if last switch?
+
+    - Solution 2: O(lg n, worst case)
+      - turn $n/2$ switches off
+      - if bulb goes off, then bulb in that half, if not, bulb in the
+        other half, and so on.
+
+ We will apply the same idea, called *binary searc* by coding a game
+ of Guess The Number: make computer guess a number $0 \leq n \leq 100$
+ in less than $\lg 100 = 7$ attempts.
+
+*** Conditionals
+
+*Definition*: Conditionals control the flow of the program based on
+some boolean (=true= or =false=) condition. In C, there are two basic
+conditionals: =if-then-else= conditionals and the =switch= statement.
+The most common conditional is the =if-then-else= construct:
+
+**** if-then-else
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+if(condition)
+  statement;
+else
+  statement;
+#+END_EXAMPLE
+
+The =else= is optional (you may have a conditional without the it).
+
+if there are more than on =statement= above, then you must enclose
+them between curly braces, like this:
+
+#+BEGIN_EXAMPLE
+if(condition) {
+  statement1;
+  statement2;
+  statement3;
+  ...
+}
+else {
+  statement1;
+  statement2;
+  statement3;
+  ...
+}
+#+END_EXAMPLE
+
+Now, *for a condition to be true, the condition must be different than
+0*.
+
+*Examples*:
+
+ - Sanity check
+   - people make mistakes
+   - sanitize! [[file:../code/sanity1.c]]
+ - Finally, the game! (well, a simpler version)
+   - computer chooses number, human guesses it: [[file:../code/guess1.c]]
+   - but, obviously, this won't do. we have to repeat this!
+
+You will now see another version of the syntax above:
+
+#+BEGIN_EXAMPLE
+if(cond)
+  statement;
+else if (cond)
+  statement;
+else
+  statement;
+#+END_EXAMPLE
+
+In this case, if the first =cond= is false, but you still want to as
+something else before moving on. [[file:../code/guess2.c]] actually does
+the guessing.
+
+ - notice there's a lot of repetition? come back for lecture 5!
+
+*Homework*: Now you solve the opposite game: human chooses number,
+computer guesses it.
+
+**** switch-case
+
+The =switch= statement is a "simpler" version of =if=. It is a
+multi-way decision over /integer constants/.
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+switch (expr) {
+  case const-expr:
+    statement;
+    (break;)
+  case const-expr:
+    statement;
+    (break;)
+  case const-expr:
+    statement;
+    (break;)
+  ...
+default:
+    statement;
+}
+#+END_EXAMPLE
+
+Whenever you have time, try to do this with =if... else if... else
+if...=. Boring!
+
+*Examples*:
+
+ - There is a problem, without =break=, =switch= falls through:
+   [[file:../code/case0.c]].
+   - This is sometimes useful, consider: [[file:../code/case1.c]].
+   - To fix this, we use =break=, [[file:../code/case2.c]].
+
+ Now you fix [[file:../code/case0.c]] so that it works.
+
+** Resources
+   - No resources necessary.
+
+** Next class
+
+   - Loops, K&R 3.5-3.7
