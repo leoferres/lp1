@@ -1,0 +1,102 @@
+#+title: Programming 503208: Study Guide 3
+#+author: Leo Ferres
+#+email: lferres@inf.udec.cl
+
+* Introduction
+
+In Study Guide 2, I asked to write a program that prints a pyramid (a
+triangle): write code to build the following triangle, following the
+pattern listed there (notice that the median is the sequence of uneven
+numbers 1, 3, 5, 7, ...
+
+#+BEGIN_EXAMPLE
+        1
+      2 3 2
+    3 4 5 4 3
+  4 5 6 7 6 5 4
+5 6 7 8 9 8 7 6 5
+#+END_EXAMPLE
+
+Now we are doing many more of these, starting with a simpler one.
+
+* Exercises
+
+** Write a C Program to print half pyramid as using * as shown in figure below.
+
+#+BEGIN_EXAMPLE
+ *
+ * *
+ * * *
+ * * * *
+ * * * * *
+#+END_EXAMPLE
+
+** Write a C Program to print triangle of characters as below
+
+#+BEGIN_EXAMPLE
+A
+B B
+C C C
+D D D D
+E E E E E
+#+END_EXAMPLE
+
+** Write a C Program to print inverted half pyramid using * as shown below.
+
+#+BEGIN_EXAMPLE
+ * * * * *
+ * * * *
+ * * *
+ * *
+ *
+#+END_EXAMPLE
+
+** Write a C Program to print inverted half pyramid as using numbers as shown below.
+
+#+BEGIN_EXAMPLE
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2
+1
+#+END_EXAMPLE
+
+** Write a C program to print pyramid using *.
+
+#+BEGIN_EXAMPLE
+         *
+       * * *
+     * * * * *
+   * * * * * * *
+ * * * * * * * * *
+#+END_EXAMPLE
+
+** Write a C program to print a reversed pyramid using *.
+
+#+BEGIN_EXAMPLE
+ * * * * * * * * *
+   * * * * * * *
+     * * * * *
+       * * *
+         *
+#+END_EXAMPLE
+
+** Write a C program to Draw Pascal's triangle
+
+#+BEGIN_EXAMPLE
+     1
+    1 1
+   1 2 1
+  1 3 3 1
+ 1 4 6 4 1
+1 5 10 10 5 1
+#+END_EXAMPLE
+
+** Write a C program to display Floyd's Triangle.
+
+#+BEGIN_EXAMPLE
+1
+2 3
+4 5 6
+7 8 9 10
+#+END_EXAMPLE
