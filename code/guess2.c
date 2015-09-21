@@ -12,7 +12,7 @@
  * SOURCE: Minor modifications of
  * http://www.c.happycodings.com/Miscellaneous/code19.html
  *
- * CREATION DATE: 2013-04-02-16:44; MODIFIED: 
+ * CREATION DATE: 2013-04-02-16:44; MODIFIED:
  *
  ******************************************************************************/
 
@@ -24,15 +24,15 @@
 int main(void) {
   int mine = 0;
   int yours = 0;
-  
+
   srand(time(NULL));
   mine = 1 + rand() % 10;
-  
+
   printf("Guess my number, 1 - 10: ");
   scanf("%d", &yours);
 
   /* attempt 1 */
-  
+
   if(yours < mine)
     printf("Your guess was to low\n");
   else if(yours > mine)
@@ -80,7 +80,7 @@ int main(void) {
   else if(yours > mine)
     printf("Your guess was to high\n");
   else
-    printf("Yesss ... you got it!\n");  
+    printf("Yesss ... you got it!\n");
 
   printf("The correct number was, %d\n", mine);
 

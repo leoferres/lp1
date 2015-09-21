@@ -9,7 +9,7 @@ void tc1() {
      int a = 5.6;
      printf ("%d\n",a); /* truncation */
      float b = 3/2;
-     printf("%f", b);
+     printf("%f\n", b);
      float c = 7;
      printf ("%f\n",c); /* to float */
 }

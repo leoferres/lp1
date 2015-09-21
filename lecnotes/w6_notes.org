@@ -1,0 +1,182 @@
+#+TITLE: Week 6
+
+* Lecture notes <2015-09-21 lun>
+
+** Relevant info
+
+ - Don't forget to go over the material I published on the website.
+ - Create a =git= repo, send me the name
+   - Put all your work in it.
+   - git config --global http.proxy http://192.168.40.1:3128
+     git config --global https.proxy https://192.168.40.1:3128
+ - http://meetingwords.com/WbdMFUCjDU your git account.
+ - want to do this together?
+ - $128 CLP per error in my notes/code
+ - This is the second class with some flow control.
+   - K&R 3.5-3.7
+
+** Lecture
+
+*Objective*: Learn about =for= constructions, also called loops*. We
+*will talk about =while=, =for=, and a few auxiliary keywords.
+
+*Remember*:
+ - 0 is false, anything else is true
+
+Now... let's work on new stuff.
+
+*** Story
+
+Remember that in Week 6, we coded the "Guess my names" game:
+ - Machine chooses a number (e.g., between 0 and 10)
+ - Human guesses it in $\lceil \lg n\rceil$ attempts (4 in this case).
+ - *However*, in [[file:../code/guess2.c]], we repeated the code 4 times
+   to do this! (UGLY!) Surely a better way?
+   - file:../code/guess3.c is more elegant.
+
+
+*** Loops
+
+*Definition*:
+
+
+**** while loops
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+while(cond)
+  statements;
+#+END_EXAMPLE
+
+Obviously you may also write a ={block of statements:}=.
+
+*means*
+
+1. Evaluate =cond=
+2. If =cond= is not 0, then execute statements and go back to 1.
+   #+BEGIN_EXAMPLE
+   while((c=getchar())==' ' || c == '\n' || c == '\t'); //don't do stuff
+   #+END_EXAMPLE
+
+Since =while= evals =cond= first, it may execute 0
+times. E.g. =while(!EOF)= loops until EOF... /but what if file is
+already empty?/
+
+**** for loops
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+for(init_expr; cond; incr_expr)
+  statement;
+#+END_EXAMPLE
+
+Obviously you may also write a ={block of statements:}=.
+
+*means*
+
+1. assign an initial value (say =int i=0=)
+2. evaluate =cond=
+3. if =cond= is not 0, execute increment expression (say =i++=, but
+   may be any increment (or decrement!) op (=i--=, =i/=2=)
+
+For example
+
+#+BEGIN_EXAMPLE
+for(int i = 0; i < N; i++) // maybe scan a list
+  ...
+#+END_EXAMPLE
+
+*Notice*:
+
+1. =int i= within the for loop (=std=c99=)
+2. =for(expr1;cond;expr2)= is equivalent to:
+   #+BEGIN_EXAMPLE
+   expr1;
+   while(cond) {
+     statement;
+     expr2;
+   }
+   #+END_EXAMPLE
+3. =While(1)= is equiv to =for(;;)=
+
+*Examples*
+
+Let's work out two examples for the =for= loop.
+
+1. Write a program that prints the multiplication table 1-10:
+   - ask for a number
+   - if less than 0 or greater than 9, print error, exit.
+   - else: print multiplication table using =for= loop.
+   - Solution at: file:../code/for.c
+
+2. Build a simple cash register:
+   - declare and initilize accumulator to 0
+   - loop through values until empty
+   - add values
+   - if empty, return total.
+   - Solution: file:../code/cashreg.c (beware, incomplete)
+
+**** do-while loops
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+do {
+  statements;
+} while(cond);
+#+END_EXAMPLE
+
+Obviously you may also write a ={block of statements:}=.
+
+*means*
+
+1. execute statements
+2. evaluate =cond= and go to 1
+
+Statements in =do-while= loops are executed at least once. Notice that
+the cond is evaluated after! file:../code/dowhile.c.
+
+**** =continue= and =break=
+
+*Syntax*
+
+#+BEGIN_EXAMPLE
+while(cond) {
+  statements;
+  if(cond) break; // (*)
+  statement;
+  ...
+}
+statement; (break jumps *)
+#+END_EXAMPLE
+
+*means*: exit from loop, see file:../code/continue.c
+
+
+#+BEGIN_EXAMPLE
+while(cond) { // (* continue jumps here)
+  statements;
+  if(cond) continue; // (*)
+  statement;
+  ...
+}
+statement;
+#+END_EXAMPLE
+
+*means*: skip 1 loop iteration... I don't have an example :( please,
+would you write one for me?
+
+
+** Resources
+   - No resources necessary.
+
+** Homework:
+
+Please do the following exercises and upload them to =github=:
+file:../exercises/w6_ex1.org
+
+** Next class
+
+   - Functions I: Program structure, K&R 4.1-4.4, 4.6, 4.8-4.9
