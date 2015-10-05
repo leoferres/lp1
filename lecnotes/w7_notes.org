@@ -1,0 +1,282 @@
+#+TITLE: Week 7
+
+* Lecture notes <2015-10-05 lun>
+
+** Relevant info
+
+ - This is the second class with some flow control.
+   - K&R 3.5-3.7
+
+** Lecture
+
+*Objective*: Learn about =for= constructions, also called loops*. We
+*will talk about =while=, =for=, and a few auxiliary keywords.
+
+*Remember*:
+
+
+Now... let's work on new stuff.
+
+** Introduction
+
+Arrays in C act to store related data under a single variable name
+with an index, also known as a subscript or index number. It is
+easiest to think of an array as simply a list or ordered grouping of
+variables. As such, arrays often help a programmer organize
+collections of data efficiently and intuitively.  Suppose we had a set
+of grades that we wished to read into the computer and suppose we
+wished to perform some operations on these grades, we will quickly
+realize that we cannot perform such an operation until each and every
+grade has been entered since it would be quite a tedious task to
+declare each and every student grade as a variable especially since
+there may be a very large number.
+
+** Arrays
+
+In C we can define variable called grades, which represents not a
+single value of grade but a entire set of grades. Each element of the
+set can then be referenced by means ofthe index.
+
+Like any other variable arrays must be declared before they are
+used. The general form of declaration is:
+
+#+BEGIN_EXAMPLE
+type variable-name[50];.
+#+END_EXAMPLE
+
+Thus we can make an array of 10 integers with the declaration
+
+#+BEGIN_EXAMPLE
+int x[10];
+#+END_EXAMPLE
+
+The square brackets mean subscripting; parentheses are used only for
+function references. Array indexes begin at zero, so the elements of
+
+#+BEGIN_EXAMPLE
+x are x[0], x[1], x[2], ..., x[9]
+#+END_EXAMPLE
+
+For a character array called letters,
+
+#+BEGIN_EXAMPLE
+char letters[6];
+#+END_EXAMPLE
+
+and so on. If we wish to initialize as we declare, we write:
+
+#+BEGIN_EXAMPLE
+int point[6]={0,0,1,0,0,0};
+#+END_EXAMPLE
+
+If not all elements in the array are initialized, the remaining
+elements will contain a value of 0. If we want to access a variable
+stored in an array, for example with the above declaration, the
+following code will store a 1 in the variable:
+
+#+BEGIN_EXAMPLE
+x int x;
+x = point[2];
+#+END_EXAMPLE
+
+If an array has $n$ elements, the largest subscript is n-1. *C does not
+guarantee bounds checking on array accesses*. The compiler may not
+complain about the following (though the best compilers do):
+
+#+BEGIN_EXAMPLE
+char y;
+int z = 9;
+char grades[6] = { 4, 4, 6, 3, 7, 7 };
+Y = grades[15];
+y = grades[-4];
+y = grades[z];
+#+END_EXAMPLE
+
+The ability to represent a collection of related data items by a
+single array enables us to develop concise and efficient programs. For
+example we can very easily interate through the elements in the array
+by varying the value of the variable that is used as a subscript into
+the array. So the =for= loop
+
+#+BEGIN_EXAMPLE
+for(i=0;i < 6;++i);
+sum = sum + grades[i];
+#+END_EXAMPLE
+
+Will sequence through the first 6 elements of the array =grades=
+(elements 0 to 5) and will add the values of each grade into
+=sum=. When the for loop is finished, the variable =sum= will then
+contain the total of first 100 values of the =grades= array (Assuming
+sum were set to zero before the loop was entered). During program
+execution, an out of bounds array access does not always cause a run
+time error. Your program may happily continue after retrieving a value
+from =point[-1]=. To alleviate indexing problems, the =sizeof()=
+expression is commonly used when coding loops that process arrays.
+
+#+BEGIN_EXAMPLE
+int ix;
+short anArray[]= { 3, 6, 9, 12, 15 };
+for (ix=0; ix< (sizeof(anArray)/sizeof(short)); ++ix) {
+  DoSomethingWith( anArray[ix] );
+}
+#+END_EXAMPLE
+
+Notice in the above example, the size of the array was not explicitly
+specified. The compiler knows to size it at 5 because of the five
+values in the initializer list. Adding an additional value to the list
+will cause it to be sized to six, and because of the sizeof expression
+in the for loop, the code automatically adjusts to this change.
+
+Multiple-dimension arrays are provided, though not much used above two
+dimensions. The declaration and use look like
+
+#+BEGIN_EXAMPLE
+int name[10][20];
+#+END_EXAMPLE
+
+To access/modify a value in this array we need two subscripts:
+
+#+BEGIN_EXAMPLE
+char ch;
+ch = two_d[2][4];
+or
+two_d[0][0] = ’x’;
+#+END_EXAMPLE
+
+Similarly, a multi-dimensional array can be initialized like this:
+
+#+BEGIN_EXAMPLE
+int two_d[2][3] = {{ 5, 2, 1 }, { 6, 7, 8 }};
+#+END_EXAMPLE
+
+Counting and ordering vast collections of data is perhaps the most
+common activity you will undertake as a programmer. The following
+program counts the number of negative integers in an array.
+
+We basically define the needed variables (including the lst array of
+10 elements):
+
+#+BEGIN_SRC C
+  #include<stdio.h>
+  int main() {
+    int lst[10];
+    int n;
+    int count_neg=0, count_pos=0; // negative and positive
+    printf("Enter the elements of the array\n");
+    for (n=0;n < 10;n++)
+      scanf("%d",&lst[n]);
+
+    for(n=0;n < 10;n++) {
+      if(lst[n] < 0)
+        count_neg++;
+      else
+        count_pos++;
+    }
+
+    printf("There are %d negative numbers in the array\n",count_neg);
+    printf("There are %d positive numbers in the array\n",count_pos);
+
+    return 0;
+  }
+#+END_SRC
+
+Let's look at another example. This example counts the number of
+characters in a line, until a new line character \n is found.
+
+#+BEGIN_SRC C
+  #include<stdio.h>
+  int main() {
+    int n, c;
+    char line[100];
+    n = 0;
+    while( (c=getchar( )) != '\n' ) {
+      if( n < 100 )
+        line[n] = c;
+      n++;
+    }
+    printf("length = %d\n", n);
+    return 0;
+  }
+#+END_SRC
+
+** Character arrays (aka strings)
+
+C has no string handling facilities built in; consequently, strings
+are defined as arrays of characters. C allows a character array to be
+represented by a character string rather than a list of characters,
+with the null terminating character automatically added to the
+end. For example, to store the string "Dennis Ritchie", we would write:
+
+#+BEGIN_EXAMPLE
+char string[] = "Dennis Ritchie";
+#+END_EXAMPLE
+
+or
+
+#+BEGIN_EXAMPLE
+char string[] = {’M’, ’e’, ’r’, ’k’, ’k’, ’i’, ’j’, ’o’, ’n’, ’o’, ’\0’};
+#+END_EXAMPLE
+
+In the first example, the string will have a null character
+automatically appended to the end by the compiler; by convention,
+library functions expect strings to be terminated by a null
+character. The latter declaration indicates individual elements, and
+as such the null terminator needs to be added manually. For example,
+printf uses the =\0= to detect the end of a character array when
+printing it out with a =%s=.  Strings do not always have to be linked to
+an explicit variable. As you have seen already, a string of characters
+can be created directly as an unnamed string that is used directly (as
+with the printf functions.)  We can copy a character array s into
+another t like this:
+
+#+BEGIN_EXAMPLE
+i = 0;
+while( (t[i]=s[i]) != '\0' )
+  i++;
+#+END_EXAMPLE
+
+To create an extra long string, you will have to split the string into
+multiple sections, by closing the first section with a quote, and
+recommencing the string on the next line (also starting and ending in
+a quote):
+
+#+BEGIN_EXAMPLE
+char string[] = "This is a very, very long "
+                "string that requires two lines.";
+#+END_EXAMPLE
+
+There is one place and one place only where C puts in the =\0= at the
+end of a character array for you, and that is in the construction:
+
+#+BEGIN_EXAMPLE
+"stuff between double quotes"
+#+END_EXAMPLE
+
+The compiler puts a =\0= at the end automatically. Text enclosed in
+double quotes is called a string; its properties are precisely those
+of an (initialized) array of characters.
+
+#+BEGIN_SRC C
+  #include <stdio.h>
+  #include <conio.h>
+  #include <string.h>
+  int reverse(int i);
+  char st[]="Hello World";
+  int main() {
+    // YOUR CODE HERE
+    return 0;
+  }
+
+  void reverse(char s[]) {
+    int c, i, j;
+    for (i = 0, j = strlen(s)-1; i < j; i++, j--) {
+      c = s[i];
+      s[i] = s[j];
+      s[j] = c;
+    }
+  }
+#+END_SRC
+
+** Next class
+
+   - Functions I: Program structure, K&R 4.1-4.4, 4.6, 4.8-4.9
