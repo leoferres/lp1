@@ -39,7 +39,6 @@ Remember that in Week 6, we coded the "Guess my names" game:
 
 *Definition*:
 
-
 **** while loops
 
 *Syntax*:
