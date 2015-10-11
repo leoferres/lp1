@@ -4,16 +4,15 @@
 
 ** Relevant info
 
+ - http://goo.gl/forms/bgdgXwMNs2
  - This is the second class with some flow control.
    - K&R 3.5-3.7
 
 ** Lecture
 
-*Objective*: Learn about =for= constructions, also called loops*. We
-*will talk about =while=, =for=, and a few auxiliary keywords.
+*Objective*:
 
 *Remember*:
-
 
 Now... let's work on new stuff.
 
