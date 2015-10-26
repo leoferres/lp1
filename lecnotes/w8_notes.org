@@ -123,6 +123,8 @@ This takes us to the notion of...
 
 ** Exercises!
 
+** Write the pow() function (returns the power of a number n to an exponent e)
+
 ** Write a function ``replace'' which takes a pointer to a string as a parameter, which replaces all spaces in that string by minus signs, and delivers the number of spaces it replaced.
 
 Thus
