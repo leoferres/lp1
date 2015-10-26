@@ -1,0 +1,144 @@
+#+TITLE: Week 8
+
+* Lecture notes <2015-10-26 lun>
+
+** Relevant info
+
+
+** Lecture
+
+*Objective*: To learn about functions and program structure
+
+*Topics*:
+  - Function syntax
+  - Block structure and scope rules
+
+*Definition*: A function (fn) =foo= is a "block" of code (a sequence
+of instructions) that performs a (single, hopefully) task.
+
+[an old concept, Wilkes, Wheeler, Gill, 1951, "Closed Subroutine"]
+
+*Advantages*:
+
+  - can be used in different parts of the program
+  - can be used in other programs (stand on the shoulder of giants!)
+  - can make large programs simpler by hiding some of the complexity
+
+*Syntax*:
+
+#+BEGIN_EXAMPLE
+<rettype> fname (type arg1, type arg2, ...) { istructions...  return
+  expr; // must be of type <rettype> }
+#+END_EXAMPLE
+
+For example:
+
+#+BEGIN_SRC C
+int sum(int a, int b) { int res; res = a+b; return res; }
+#+END_SRC
+
+*Q*: can anyone think of a simple form for that function?
+
+This all means:
+
+ - fn returns an =int= as rettype
+ - fn is called =sum=
+ - fn takes two arguments of type =int= called =a= and =b=
+ - block of code creates a var of type =int= called =res= that sums
+   =a= and =b=
+ - fn returns returns =res= which is of type <rettype>, =int= in this
+   case.
+
+*Notice*: <rettype>, args and =return= can be void:
+
+#+BEGIN_SRC C
+void useless() { puts("42"); return; // can be omitted }
+#+END_SRC
+
+*Another notice*: fn can return any non-integer type as well, and even
+ non-primitives (that may have been =typedef='d.
+
+*Warning*: if a <rettype> and return don't match, then the compiler
+ will complain. (type conversion rules still apply, see week 3)
+
+** Function declaration and definition
+
+Just like a variable, functions must be declared before calling
+it. There are two ways of doing this, compare:
+
+#+BEGIN_EXAMPLE
+int sum(int a, int b); // declaration, or int sum(int, int); int
+main() { printf("sum of 2+2 = %d", sum(2,2)); // fn call return 0; }
+int sum(int a, int b) { // fn definition return a+b; // braces are
+needed }
+#+END_EXAMPLE
+
+to this:
+
+#+BEGIN_EXAMPLE
+int sum(int a, int b) { // fn declaration AND definition return a+b;
+  // braces are needed } int main() { printf("sum of 2+2 = %d",
+  sum(2,2)); // fn call return 0; }
+#+END_EXAMPLE
+
+*Notice*:
+
+ - C has no fn overloading (same name, different arguments)
+ - Not possible to declare with one /signature/ and define with
+   another: int sum(int a, int b); int sum(int a, float b) {} //
+   wrong.
+
+** Block structure (really important, pay attention!)
+
+{ - left brace introduces new block } - right brace ends block
+
+*vars declared in inner blocks are hidden from outer blocks!!!*
+
+This takes us to the notion of...
+
+** Scope
+
+*Defn'n*: The scope of a name is the part of the program where that
+ name is "visible" (i.e., can be used).
+
+*** Kinds of scope
+
+ - global scope (global variables) (*Q*: what are they?)
+   - declared outside any function (*Q*: why is this useful?)
+   - can be used by any block of code that comes after
+   - E.g.:
+     #+BEGIN_EXAMPLE
+     int g; int main() { g = 0; // ok }
+     #+END_EXAMPLE
+
+ - block scope
+   - blocks inherit global variables
+   - may declare vars with the same name (hiding outer ones)
+   - E.g.:
+     #+BEGIN_EXAMPLE
+     int a; // global lvl 0 { { // inherits from lvl 0 { int a; //
+     declares another =a=, hides all =a= before } int a; // declares
+     another =a=, hides =a= from 1 } // global =a= is untouched }
+     #+END_EXAMPLE
+
+** Exercises!
+
+** Write a function ``replace'' which takes a pointer to a string as a parameter, which replaces all spaces in that string by minus signs, and delivers the number of spaces it replaced.
+
+Thus
+
+        char *cat = "The cat sat";
+        n = replace( cat );
+
+should set
+
+        cat to "The-cat-sat"
+
+and
+
+        n to 2.
+
+
+** Next class
+
+   - Functions II: Recursion
