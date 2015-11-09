@@ -4,6 +4,8 @@
 
 ** Relevant info
 
+ - Tomorrow is the midterm (up to arrays)
+ -
 
 ** Lecture
 
@@ -18,7 +20,7 @@ of instructions) that performs a (single, hopefully) task.
 
 [an old concept, Wilkes, Wheeler, Gill, 1951, "Closed Subroutine"]
 
-*Advantages*:
+*Advantages*: boiler-plate code
 
   - can be used in different parts of the program
   - can be used in other programs (stand on the shoulder of giants!)
@@ -27,14 +29,20 @@ of instructions) that performs a (single, hopefully) task.
 *Syntax*:
 
 #+BEGIN_EXAMPLE
-<rettype> fname (type arg1, type arg2, ...) { istructions...  return
-  expr; // must be of type <rettype> }
+<rettype> fname (type arg1, type arg2, ...) {
+  istructions...
+  return expr; // must be of type <rettype>
+}
 #+END_EXAMPLE
 
 For example:
 
 #+BEGIN_SRC C
-int sum(int a, int b) { int res; res = a+b; return res; }
+int sum(int a, int b) {
+  int res;
+  res = a + b;
+  return res; // shorter version: return a + b;
+}
 #+END_SRC
 
 *Q*: can anyone think of a simple form for that function?
@@ -52,11 +60,24 @@ This all means:
 *Notice*: <rettype>, args and =return= can be void:
 
 #+BEGIN_SRC C
-void useless() { puts("42"); return; // can be omitted }
+void useless() {
+  puts("42");
+
+  return; // can be omitted
+}
+#+END_SRC
+
+Returns and integer:
+
+#+BEGIN_SRC C
+int count_puts_chars() {
+  int a = puts("42");
+  return a; // can be omitted
+}
 #+END_SRC
 
 *Another notice*: fn can return any non-integer type as well, and even
- non-primitives (that may have been =typedef='d.
+ non-primitives (that may have been =typedef='d).
 
 *Warning*: if a <rettype> and return don't match, then the compiler
  will complain. (type conversion rules still apply, see week 3)
@@ -67,18 +88,29 @@ Just like a variable, functions must be declared before calling
 it. There are two ways of doing this, compare:
 
 #+BEGIN_EXAMPLE
-int sum(int a, int b); // declaration, or int sum(int, int); int
-main() { printf("sum of 2+2 = %d", sum(2,2)); // fn call return 0; }
-int sum(int a, int b) { // fn definition return a+b; // braces are
-needed }
+int sum(int a, int b); // declaration, or int sum(int, int);
+
+int main() {
+  printf("sum of 2+2 = %d", sum(2,2)); // fn call
+  return 0;
+}
+
+int sum(int a, int b) { // fn definition
+  return a+b; // braces are needed
+}
 #+END_EXAMPLE
 
 to this:
 
 #+BEGIN_EXAMPLE
-int sum(int a, int b) { // fn declaration AND definition return a+b;
-  // braces are needed } int main() { printf("sum of 2+2 = %d",
-  sum(2,2)); // fn call return 0; }
+int sum(int a, int b) { // fn declaration AND definition
+  return a+b; // braces are needed
+}
+
+int main() {
+  printf("sum of 2+2 = %d", sum(2,2)); // fn call
+  return 0;
+}
 #+END_EXAMPLE
 
 *Notice*:
@@ -90,9 +122,10 @@ int sum(int a, int b) { // fn declaration AND definition return a+b;
 
 ** Block structure (really important, pay attention!)
 
-{ - left brace introduces new block } - right brace ends block
+{ - left brace introduces new block
+} - right brace ends block
 
-*vars declared in inner blocks are hidden from outer blocks!!!*
+*_vars declared in inner blocks are hidden from outer blocks!!!_*
 
 This takes us to the notion of...
 
@@ -108,7 +141,11 @@ This takes us to the notion of...
    - can be used by any block of code that comes after
    - E.g.:
      #+BEGIN_EXAMPLE
-     int g; int main() { g = 0; // ok }
+     int g;
+     int main() {
+       g = 0; // ok
+       return 0;
+     }
      #+END_EXAMPLE
 
  - block scope
@@ -116,9 +153,15 @@ This takes us to the notion of...
    - may declare vars with the same name (hiding outer ones)
    - E.g.:
      #+BEGIN_EXAMPLE
-     int a; // global lvl 0 { { // inherits from lvl 0 { int a; //
-     declares another =a=, hides all =a= before } int a; // declares
-     another =a=, hides =a= from 1 } // global =a= is untouched }
+     int a; // global lvl 0
+     {
+       { // inherits from lvl 0
+	 {
+	   int a; //declares another =a=, hides all =a= before
+	 }
+	 int a; // declares another =a=, hides =a= from 1
+       } // global =a= is untouched
+     }
      #+END_EXAMPLE
 
 ** Exercises!
@@ -129,16 +172,16 @@ This takes us to the notion of...
 
 Thus
 
-        char *cat = "The cat sat";
-        n = replace( cat );
+	char cat[] = "The cat sat";
+	n = replace( cat );
 
 should set
 
-        cat to "The-cat-sat"
+	cat to "The-cat-sat"
 
 and
 
-        n to 2.
+	n to 2.
 
 
 ** Next class

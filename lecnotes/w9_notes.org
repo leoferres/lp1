@@ -1,0 +1,156 @@
+#+STARTUP:inlineimages:t
+#+TITLE: Week 9
+
+* Lecture notes <2015-11-09 lun>
+
+** Relevant info
+
+
+** Lecture
+
+*Objective*: To learn about recursive functions
+
+*Topic*:
+
+ - Recursive functions
+
+*** Recursion
+
+*Def'n*: Recursion is the process a procedure goes through when one of
+the steps in the procedure involves invoking the procedure itself.
+
+For example, Fibonacci numbers $fib(8)={0,1,1,2,3,5,8,13}, see the
+Online Encyclopaedia of Integer Sequences (OEIS, https://oeis.org/,
+A000045).
+
+#+BEGIN_EXAMPLE
+fib(n) = n, if n < 2                        // called base case (1)
+         fib(n-1) + fib(n-2), otherwise     // called recursive step (2)
+#+END_EXAMPLE
+
+*means* that $fib(n)$ is defined partly in terms of non-recursive
+values (1), and partly in terms of itself (2).
+
+In C, a function may call itself. For example (before going in all the
+way, a simpler example): counting to $n$ /recursively/ (versus
+/iteratively/, technical term for a loop).
+
+#+BEGIN_SRC C
+int count(int n) {
+  if (n==0) return; // base case
+  int rec = count(n-1); // recursive step
+  printf("%d", rec);
+  return n;
+}
+#+END_SRC
+
+When called recursively, each invocation gets a new set of automatic
+(stack) variables. Older vals are also kept in the stack
+(separately). *The stack is a "LIFO" structure, like a pile of dishes
+in an all-you-can-eat buffet*. Let's see how the stack behaves for
+=count(4)=.
+
+[[./stack_count.png]]
+
+The stack is part of the process address space (it can be filled, it /overflows/).
+
+For example, take "infinite" recursion (mathematicians love it, we
+don't)... it can be that there is no base case, or that it is
+unreachable. *segfault*!
+
+#+BEGIN_SRC C
+int main() {
+  main();
+  return 0; // never reached
+}
+#+END_SRC
+
+Now lets write the Fibonacci ($fib(n)$ function in C):
+
+#+BEGIN_SRC C
+int fib(int n) {
+  if (n<2) return n;
+  return fib(n-1) + fib(n-2);
+}
+#+END_SRC
+
+*Homework*: Can you make it iterative?
+
+You try the following one: factorial, $fact(n)$!
+
+#+BEGIN_EXAMPLE
+ fact(n) = 1, if n = 0, or            // base
+           n * fact(n-1), otherwise.  // recursion
+#+END_EXAMPLE
+
+#+BEGIN_SRC C
+int fact(n) {
+  if(n==0) return 1;  // base
+  return n*fact(n-1); // recursion
+}
+#+END_SRC
+
+What's going on in the stack (a bit more detail):
+
+ - *Remember*: the stack is a portion of memory
+ - for every recursive call, the stack stores vars, status registers,
+   and point of caller return (yesm functions have a memory address,
+   what did you expect, magic?) -> this is called a "stack frame"
+ - for every recursive call, local auto vars are independent
+ - stack frames are pushed until base case.
+
+[[fact_stack.png]]
+
+*** Somewhat advanced topic: Tail recursion
+
+*Defn'n*: A function is /tail-recursive/ if the very last thing it
+does is make its recursive call. See how, e.g., =fact(n)= above is not
+tail recursive (calls =*= first).
+
+#+BEGIN_EXAMPLE
+fact(4)
+4 * fact(3)
+4 * 3 * fact(2)
+4 * 3 * 2 * fact(1)
+4 * 3 * 2 * 1 = 24
+#+END_EXAMPLE
+
+Do you notice how the stack grows?? No take a look at a recursive
+function:
+
+#+BEGIN_EXAMPLE
+factr(4,1)
+factr(3,4)
+factr(2,12)
+factr(1,24)
+#+END_EXAMPLE
+
+This is just constant space (two ints). Here's the code for this
+example, though many compilers optimize for this kind of stuff.
+
+#+BEGIN_SRC C
+int factr(int n, int res) {
+  if(n==0) return res;
+  return factr(n-1, n*res);
+}
+#+END_SRC
+
+So in every call, =res= is updated "remembering" the previous value.
+
+*Exercise*: write recursive code for the following recursive function
+definition, called the "Ackermann" function:
+
+#+BEGIN_EXAMPLE
+A(m,n) = n + 1,             if m = 0
+         A(m-1, 1),         if m > 0, and n = 0
+         A(m-1, A(m, n-1)), if m > 0, and n >0
+#+END_EXAMPLE
+
+Can you make it iterative?
+
+** Next class
+
+ - Pointers!
+ - The first assignment goes public today!
+ - Look at video on input/output (IO) on the web, and the associated code:
+   http://www.inf.udec.cl/~leo/courses/503208/fall2013/L08.pdf
