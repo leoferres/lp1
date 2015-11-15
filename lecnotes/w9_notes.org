@@ -4,7 +4,7 @@
 * Lecture notes <2015-11-09 lun>
 
 ** Relevant info
-
+ -
 
 ** Lecture
 
@@ -13,6 +13,8 @@
 *Topic*:
 
  - Recursive functions
+
+GNU (GNU is not unix)
 
 *** Recursion
 
@@ -44,15 +46,17 @@ int count(int n) {
 }
 #+END_SRC
 
+[[./stack_count.png]]
+
+
 When called recursively, each invocation gets a new set of automatic
 (stack) variables. Older vals are also kept in the stack
 (separately). *The stack is a "LIFO" structure, like a pile of dishes
 in an all-you-can-eat buffet*. Let's see how the stack behaves for
 =count(4)=.
 
-[[./stack_count.png]]
-
-The stack is part of the process address space (it can be filled, it /overflows/).
+The stack is part of the process address space (it can be filled, it
+/overflows/).
 
 For example, take "infinite" recursion (mathematicians love it, we
 don't)... it can be that there is no base case, or that it is
