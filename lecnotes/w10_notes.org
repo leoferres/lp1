@@ -72,10 +72,15 @@ that have already done the work. All rights to the respective owners.
    int *ptr = NULL;
    #+END_SRC
 
+   A null pointer has a value reserved for indicating that the pointer
+   does not refer to a valid object. Null pointers are routinely used
+   to represent conditions such as the end of a list of unknown length
+   or the failure to perform some action
+
    Dereferencing a null pointer in C produces undefined behavior,
-   which could be catastrophic. However, most implementations[citation
-   needed] simply halt execution of the program in question, usually
-   with a segmentation fault.
+   which could be catastrophic. However, most implementations simply
+   halt execution of the program in question, usually with a
+   segmentation fault.
 
    In any case, once a pointer has been declared, the next logical
    step is for it to point at something:
@@ -253,6 +258,74 @@ that have already done the work. All rights to the respective owners.
    #+END_SRC
 
    *Now write swap!* by yourself.
+
+*** Function pointer
+
+    In some languages, a pointer can reference executable code, i.e.,
+    it can point to a function, method, or procedure. A function
+    pointer will store the address of a function to be invoked. While
+    this facility can be used to call functions dynamically, it is
+    often a favorite technique of virus and other malicious software
+    writers.
+
+    #+BEGIN_SRC C
+      int sum(int n1, int n2) {   // Function with two integer parameters returning an integer value
+        return n1 + n2;
+      }
+
+      int main(void) {
+        int a, b, x, y;
+        int (*fp)(int, int);    // Function pointer which can point to a function like sum
+        fp = &sum;              // fp now points to function sum
+        x = (*fp)(a, b);        // Calls function sum with arguments a and b
+        y = sum(a, b);          // Calls function sum with arguments a and b
+      }
+    #+END_SRC
+
+*** Pointer declaration syntax overview
+
+    These pointer declarations cover most variants of pointer
+    declarations. Of course is it possible to have triple pointers,
+    but the main principles behind a triple pointer already exists in
+    a double pointer.
+
+    #+BEGIN_SRC C
+      char cff [5][5];    /* array of arrays of chars; a char can be any
+                             sign */
+      char *cfp [5];      /* array of pointers to chars */
+      char **cpp;         /* pointer to pointer to chars ("double
+                             pointer") */
+      char (*cpf) [5];    /* pointer to an array of chars */
+      char *cpF();        /* function which returns a pointer to chars */
+      char (*CFp)();      /* pointer to a function which returns chars */
+      char (*cfpF*())[5]; /* function which returns pointers to an array of
+                             chars */
+      char (*cpFf[5])();  /* an array of pointers to functions, which all
+                             return chars */
+    #+END_SRC
+
+    The =()= and =[]= have a higher priority than =*=.
+
+*** Void pinters
+
+    The void pointer, or =void*=, is supported in ANSI C as a generic
+    pointer type. A pointer to =void= can store an address to any
+    non-function data type, and, in C, is implicitly converted to any
+    other pointer type on assignment, but it must be explicitly cast
+    if dereferenced inline. K&R C used =char*= for the “type-agnostic
+    pointer” purpose (before ANSI C).
+
+    #+BEGIN_SRC C
+      int x = 4;
+      void* p1 = &x;
+      int* p2 = p1;       // void* implicitly converted to int*: valid C,
+                          // but not C++
+      int a = *p2;
+      int b = *(int*)p1;  // when dereferencing inline, there is no implicit
+                          // conversion
+    #+END_SRC
+
+Pfew. That's a lot.
 
 ** Next class
 
