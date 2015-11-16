@@ -1,0 +1,259 @@
+#+STARTUP:inlineimages:t
+#+TITLE: Week 10
+
+* Lecture notes <2015-11-09 lun>
+
+** Relevant info
+
+ - First assignment has been published. [Explain what needs to be done]
+
+** Lecture
+
+*Objective*: To learn about pointers!
+
+*Plagiarism Disclaimer*: I've "based" these notes heavily (or
+downright copied and pasted them) from the Wikipedia page on
+pointer. I think it's clear and comprehensive, and no, I don't have to
+write everything from scratch when there are smarter people than me
+that have already done the work. All rights to the respective owners.
+
+*Topic*:
+
+ - Pointers.. are hard. Let's go shopping!
+ - Memory
+
+** Introduction: what are pointers anyway?!
+
+   - Suppose you need to write a function that swaps two values =a=,
+     and =b=, and returns whatever value was in =a= as the value of
+     =b= and vice-versa. That is, you pass 2 integers, say =a=2= and
+     =b=4= and you'd like to get =a=4= and =b=2= as the return value.
+     *Try it!*
+
+   - What's the problem, do you think?
+
+   *Def'n* (from the Wikipedia page): A memory pointer (or just
+   pointer) is a primitive, the value of which is intended to be used
+   as a memory address; it is said that a pointer points to a memory
+   address. It is also said that a pointer points to a datum [in
+   memory] when the pointer's value is the datum's memory address.
+
+   More generally, a pointer is a kind of reference, and it is said
+   that a pointer references a datum stored somewhere in memory; to
+   obtain that datum is to dereference the pointer. The feature that
+   separates pointers from other kinds of reference is that a
+   pointer's value is meant to be interpreted as a memory address,
+   which is a rather low-level concept.
+
+   References serve as a level of indirection: A pointer's value
+   determines which memory address (that is, which datum) is to be
+   used in a calculation. Because indirection is a fundamental aspect
+   of algorithms, pointers are often expressed as a fundamental data
+   type in programming languages.
+
+** Pointers in C
+
+   *Syntax*:
+
+   #+BEGIN_SRC C
+   int *ptr;
+   #+END_SRC
+
+   Read as: =ptr= is a pointer to =int=
+
+   Because the C language does not specify an implicit initialization
+   for objects of automatic storage duration, care should often be
+   taken to ensure that the address to which ptr points is valid; this
+   is why it is sometimes suggested that a pointer be explicitly
+   initialized to the null pointer value, which is traditionally
+   specified in C with the standardized macro NULL:
+
+   #+BEGIN_SRC C
+   int *ptr = NULL;
+   #+END_SRC
+
+   Dereferencing a null pointer in C produces undefined behavior,
+   which could be catastrophic. However, most implementations[citation
+   needed] simply halt execution of the program in question, usually
+   with a segmentation fault.
+
+   In any case, once a pointer has been declared, the next logical
+   step is for it to point at something:
+
+   #+BEGIN_SRC C
+   int a = 5;
+   int *ptr = NULL;
+
+   ptr = &a;
+   #+END_SRC
+
+   This assigns the value of the address of a to ptr. For example, if
+   a is stored at memory location of 0x8130 then the value of ptr will
+   be 0x8130 after the assignment. To dereference the pointer, an
+   asterisk is used again:
+   #+BEGIN_SRC C
+   *ptr = 8;
+   #+END_SRC
+
+   This means take the contents of ptr (which is 0x8130), "locate"
+   that address in memory and set its value to 8. If a is later
+   accessed again, its new value will be 8.
+
+   This example may be clearer if memory is examined directly. Assume
+   that a is located at address 0x8130 in memory and ptr at 0x8134;
+   also assume this is a 32-bit machine such that an int is 32-bits
+   wide. The following is what would be in memory after the following
+   code snippet is executed:
+
+   #+BEGIN_SRC C
+   int a = 5;
+   int *ptr = NULL;
+   #+END_SRC
+
+   | Address |   Contents |
+   |---------+------------|
+   |  0x8130 | 0x00000005 |
+   |  0x8134 | 0x00000000 |
+
+   (The NULL pointer shown here is 0x00000000.) By assigning the
+   address of a to ptr:
+
+   #+BEGIN_SRC C
+   ptr = &a;
+   #+END_SRC
+
+   yields the following memory values:
+
+   | Address |   Contents |
+   |---------+------------|
+   |  0x8130 | 0x00000005 |
+   |  0x8134 | 0x00008130 |
+
+   Then by dereferencing ptr by coding:
+
+   #+BEGIN_SRC C
+   *ptr = 8;
+   #+END_SRC
+
+   the computer will take the contents of ptr (which is 0x8130),
+   'locate' that address, and assign 8 to that location yielding the
+   following memory:
+
+   | Address |   Contents |
+   |---------+------------|
+   |  0x8130 | 0x00000008 |
+   |  0x8134 | 0x00008130 |
+
+   Clearly, accessing a will yield the value of 8 because the previous
+   instruction modified the contents of a by way of the pointer ptr.
+
+** C arrays
+
+   In C, array indexing is formally defined in terms of pointer
+   arithmetic; that is, the language specification requires that
+   array[i] be equivalent to *(array + i). Thus in C, arrays can be
+   thought of as pointers to consecutive areas of memory (with no
+   gaps), and the syntax for accessing arrays is identical for that
+   which can be used to dereference pointers. For example, an array
+   array can be declared and used in the following manner:
+
+   #+BEGIN_SRC C
+   int array[5];      /* Declares 5 contiguous integers */
+   int *ptr = array;  /* Arrays can be used as pointers */
+   ptr[0] = 1;        /* Pointers can be indexed with array syntax */
+   *(array + 1) = 2;  /* Arrays can be dereferenced with pointer syntax */
+   *(1 + array) = 2;  /* Pointer addition is commutative */
+   2[array] = 4;      /* Subscript operator is commutative */
+   #+END_SRC
+
+   This allocates a block of five integers and names the block array,
+   which acts as a pointer to the block. Another common use of
+   pointers is to point to dynamically allocated memory from malloc
+   which returns a consecutive block of memory of no less than the
+   requested size that can be used as an array.
+
+   While most operators on arrays and pointers are equivalent, it is
+   important to note that the sizeof operator will differ. In this
+   example, sizeof(array) will evaluate to 5*sizeof(int) (the size of
+   the array), while sizeof(ptr) will evaluate to sizeof(int*), the
+   size of the pointer itself.
+
+   Default values of an array can be declared like:
+
+   #+BEGIN_SRC C
+   int array[5] = {2, 4, 3, 1, 5};
+   #+END_SRC
+
+   If you assume that array is located in memory starting at address
+   0x1000 on a 32-bit little-endian machine then memory will contain
+   the following (values are in hexadecimal, like the addresses):
+
+ | 	 | 0 | 1  | 2 | 3 |
+ | 1000	 | 2 | 0  | 0 | 0 |
+ | 1004	 | 4 | 0  | 0 | 0 |
+ | 1008	 | 3 | 0  | 0 | 0 |
+ | 100C	 | 1 | 0  | 0 | 0 |
+ | 1010	 | 5 | 0  | 0 | 0 |
+
+   Represented here are five integers: 2, 4, 3, 1, and 5. These five
+   integers occupy 32 bits (4 bytes) each with the least-significant
+   byte stored first (this is a little-endian CPU architecture) and
+   are stored consecutively starting at address 0x1000.
+
+   The syntax for C with pointers is:
+
+ - =array= means 0x1000;
+ - =array + 1= means 0x1004 (note that the "+1" really means to add
+   one times the size of an int (4 bytes) not literally "plus one");
+ - =*array= means to dereference the contents of array. Considering
+   the contents as a memory address (0x1000), look up the value at
+   that location (0x0002);
+ - =array[i]= means element number i, 0-based, of array which is
+   translated into =*(array + i)=.
+
+   The last example is how to access the contents of array. Breaking
+   it down:
+
+ - =array + i= is the memory location of the (i + 1)th element of
+   array;
+ - =*(array + i)= takes that memory address and dereferences it to
+   access the value.
+
+** Pass by reference
+
+   Pointers can be used to pass variables by their address, allowing
+   their value to be changed. For example consider the following C
+   code:
+
+   #+BEGIN_SRC C
+        /* a copy of the int n can be changed within the function without
+           affecting the calling code */
+     void passByValue(int n) {
+         n = 12;
+     }
+
+     /* a pointer to m is passed instead. No copy of m itself is created */
+     void passByAddress(int *m) {
+         *m = 14;
+     }
+
+     int main(void) {
+         int x = 3;
+
+         /* pass a copy of x's value as the argument */
+         passByValue(x);
+         // the value was changed inside the function, but x is still 3 from here on
+
+         /* pass x's address as the argument */
+         passByAddress(&x);
+         // x was actually changed by the function and is now equal to 14 here
+
+         return 0;
+     }
+   #+END_SRC
+
+   *Now write swap!* by yourself.
+
+** Next class
+
+ - Structs (hangouts?)
