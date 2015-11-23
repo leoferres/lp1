@@ -1,0 +1,135 @@
+#+STARTUP:inlineimages:t
+#+TITLE: Week 11
+
+* Lecture notes <2015-11-23 Mon>
+
+** Relevant info
+
+ - Upload to INFODA (=tar.gz=)
+ - Upload to github account (=.c=)
+ - Generated file is clock.exe (1) =gcc clock.c -o clock.exe=
+
+** Lecture
+
+   *Objective*: To learn about structs
+
+   *Topic*: ... structs!
+
+Structures in C are defined as data containers consisting of a
+sequence of named members of various types. For instance, take the
+code in hstruct1 1ai. It defines a struct that consists of four
+members: =gender=, =age=, =money=, =nice hairdo=.
+
+#+BEGIN_SRC C
+struct Customer {
+  char gender;
+  short age;
+  int money;
+  char nice_hairdo;
+};
+#+END_SRC
+
+Structs are declared and initialized similarly to variables, except
+for the preposition of the reserved word =struct=. So, to define a
+=Customer= struct, we can do
+
+#+BEGIN_SRC C
+struct Customer c1; /*just declared, not init*/
+struct Customer c2 = {'m',20,200,'y'}; /*declared and init'd*/
+#+END_SRC
+
+We could have also declared =struct= variables in the =struct=
+declaration itself:
+
+#+BEGIN_SRC C
+struct Customer {
+  char gender;
+  short age;
+  int money;
+  char nice_hairdo;
+} c1,c2,c3[10];
+#+END_SRC
+
+and initialize it later in the program. Note that now there is also an
+array of ten =Customer= structs in =c3=. The members of a structure
+are stored in consecutive locations in memory.  The size of a
+structure is equal to the sum of the sizes of its members, plus the
+size of the padding.
+
+The way we refer to any particular member of the structure is
+=structure-name.member= as in
+
+#+BEGIN_SRC C
+c1.age = 22;
+if( c1.gender == 'f' ) ...
+#+END_SRC
+
+Although the names of structure members never stand alone, they still
+have to be unique; there can't be another id or usage in some other
+structure. So far we haven't gained much. The advantages of structures
+start to come when we have arrays of structures, or when we want to
+pass complicated data layouts between functions. Suppose we wanted to
+make a symbol table for up to 100 identifiers. We could extend our
+definitions like
+
+#+BEGIN_SRC C
+char gender[100];
+char nice_hairdo[100];
+short age[100];
+int money[100];
+#+END_SRC
+
+but a structure lets us rearrange this spread-out information so all
+the data about a single identifer is collected into one lump:
+
+#+BEGIN_SRC C
+struct Customer {
+  char gender;
+  char nice_hairdo;
+  short age;
+  int money;
+} sym[100];
+#+END_SRC
+
+Thus to print a list of all identifiers that haven't been used,
+together with their line number,
+
+#+BEGIN_SRC C
+for( i=0; i<nsym; i++ )
+  if( sym[i].age <= 30 )
+    printf("%d\t%s\n", sym[i].age, sym[i].gender);
+#+END_SRC
+
+What if we want to use pointers? (important later, come to next class
+on linked lists and memory management)
+
+#+BEGIN_SRC C
+struct Customer *psym;
+#+END_SRC
+
+The way we actually refer to an member of a structure by a pointer is like this:
+
+#+BEGIN_EXAMPLE
+ptr->structure-member
+#+END_EXAMPLE
+
+The symbol =->= means we're pointing at a member of a structure; =->=
+is only used in that context. =ptr= is a pointer to the (base of) a
+structure that contains the structure member. The expression
+=ptr->structure-member= refers to the indicated member of the
+pointed-to structure. Thus we may have constructions like:
+
+#+BEGIN_SRC C
+psym->gender = 'f';
+psym->age = 56;
+(*psym).age = 56; // equivalent to the one above
+#+END_SRC
+
+and so on (poionter arithmetic still works here). Let's look at some
+real code. Write a program that reads 100 students from stdin, and
+then prints them to =stdout=.
+
+** Next class
+
+   - Dynamic memory allocation
+   - Linked lists

@@ -6,16 +6,20 @@
 ** Relevant info
 
  - First assignment has been published. [Explain what needs to be done]
+ - Upload to INFODA (=tar.gz=)
+ - Upload to github account (=.c=)
+ - Generated file is clock.exe (1) =gcc clock.c -o clock.exe=
 
 ** Lecture
 
-*Objective*: To learn about pointers!
+   *Objective*: To learn about pointers!
 
-*Plagiarism Disclaimer*: I've "based" these notes heavily (or
-downright copied and pasted them) from the Wikipedia page on
-pointer. I think it's clear and comprehensive, and no, I don't have to
-write everything from scratch when there are smarter people than me
-that have already done the work. All rights to the respective owners.
+   *Plagiarism Disclaimer*: I've "based" these notes heavily (or
+   downright copied and pasted them) from the Wikipedia page on
+   pointer. I think it's clear and comprehensive, and no, I don't have
+   to write everything from scratch when there are smarter people than
+   me that have already done the work. All rights to the respective
+   owners.
 
 *Topic*:
 
@@ -29,6 +33,25 @@ that have already done the work. All rights to the respective owners.
      =b= and vice-versa. That is, you pass 2 integers, say =a=2= and
      =b=4= and you'd like to get =a=4= and =b=2= as the return value.
      *Try it!*
+
+#+BEGIN_SRC C
+  #include<stdio.h>
+
+  void swap(int a,int b) {
+    int tmp = a;
+    a = b;
+    b = tmp;
+    return;
+  }
+
+ main() {
+   int a=4, b=2;
+   printf("a=%d,b=%d\n",a,b);
+   swap(a,b);
+   printf("a=%d,b=%d\n",a,b);
+   return 0;
+  }
+#+END_SRC
 
    - What's the problem, do you think?
 
@@ -97,7 +120,8 @@ that have already done the work. All rights to the respective owners.
    be 0x8130 after the assignment. To dereference the pointer, an
    asterisk is used again:
    #+BEGIN_SRC C
-   *ptr = 8;
+
+  *ptr = 8;
    #+END_SRC
 
    This means take the contents of ptr (which is 0x8130), "locate"
