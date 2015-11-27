@@ -180,7 +180,7 @@
 
    In C, array indexing is formally defined in terms of pointer
    arithmetic; that is, the language specification requires that
-   array[i] be equivalent to *(array + i). Thus in C, arrays can be
+   array[i] be equivalent to =*(array + i)=. Thus in C, arrays can be
    thought of as pointers to consecutive areas of memory (with no
    gaps), and the syntax for accessing arrays is identical for that
    which can be used to dereference pointers. For example, an array
@@ -274,7 +274,7 @@
          // the value was changed inside the function, but x is still 3 from here on
 
          /* pass x's address as the argument */
-         passByAddress(&x);
+         passByReference(&x);
          // x was actually changed by the function and is now equal to 14 here
 
          return 0;
@@ -330,7 +330,7 @@
 
     The =()= and =[]= have a higher priority than =*=.
 
-*** Void pinters
+*** Void pointers
 
     The void pointer, or =void*=, is supported in ANSI C as a generic
     pointer type. A pointer to =void= can store an address to any
